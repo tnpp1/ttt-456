@@ -126,6 +126,8 @@ z-index:20; transition:all .3s; display:flex; align-items:center; justify-conten
 .form-group label{display:block;font-size:13px;color:#90c8ff;margin-bottom:6px;font-weight:500}
 .form-control{width:100%;padding:12px 14px;background:#050d1a;border:1px solid rgba(30,111,255,0.4);border-radius:12px;color:#fff;font-family:'Mitr',sans-serif;font-size:14px;outline:none;transition:all .2s;resize:vertical;}
 .form-control:focus{border-color:#00d4ff;box-shadow:0 0 12px rgba(0,212,255,0.3)}
+.form-block{background:rgba(30,111,255,0.05); padding:16px; border-radius:12px; border:1px dashed rgba(30,111,255,0.3); margin-bottom:16px;}
+.form-block h5{color:#00d4ff; margin:0 0 12px 0; font-size:15px;}
 
 /* BANK */
 .bnk{background:linear-gradient(140deg,#102040 0%,#071224 100%);
@@ -230,77 +232,132 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
 
       <div style="border-top:1px dashed rgba(30,111,255,0.3); margin:20px 0;"></div>
 
-      <!-- CUSTOMER FORM FIELDS (DYNAMIC) -->
+      <!-- BASE INFO -->
       <div class="form-group">
         <label>ชื่อเล่น / แอคเคาท์ติดต่อ *</label>
         <input type="text" id="f-name" class="form-control" placeholder="เช่น น้องฟ้า / IG: fah_sky">
       </div>
 
-      <!-- DYNAMIC QUESTIONS FOR MU-SPACE -->
-      <div id="dynamic-questions"></div>
-
-      <!-- WEBSITE ONLY FIELDS -->
-      <div class="form-group" id="fg-web-brief" style="display:none;">
-        <label>บรีฟรายละเอียดเว็บไซต์ / ฟังก์ชันที่ต้องการ *</label>
-        <textarea id="f-web-brief" class="form-control" rows="4" placeholder="อธิบายรูปแบบเว็บที่คุณต้องการ..."></textarea>
-      </div>
-      <div class="form-group" id="fg-web-color" style="display:none;">
-        <label>โทนสี / สไตล์ที่ชอบ *</label>
-        <input type="text" id="f-web-color" class="form-control" placeholder="เช่น โทนสีมินิมอล, ดาร์กโทน, สีชมพูพาสเทล">
-      </div>
-
-      <!-- MU-SPACE ONLY FIELDS -->
-      <div class="form-group" id="fg-mu-status">
-        <label>สถานะความสัมพันธ์ *</label>
-        <select id="f-status" class="form-control">
-          <option value="">-- เลือกสถานะ --</option>
-          <option value="โสด">โสด</option>
-          <option value="มีแฟนแล้ว">มีแฟนแล้ว</option>
-          <option value="คุยอยู่ / กำลังศึกษาดูใจ">คุยอยู่ / กำลังศึกษาดูใจ</option>
-          <option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
-        </select>
+      <!-- 1. SHARED APPOINTMENT (DATE/TIME) -->
+      <div id="form-appt" class="form-block" style="display:none;">
+        <h5>📅 ระบุวันและเวลาจองคิว</h5>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group" style="margin-bottom:0;">
+            <label>วันที่จองคิว / วันที่ดูดวง *</label>
+            <input type="date" id="f-date" class="form-control">
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label>เวลาที่จอง / เวลาเริ่ม *</label>
+            <input type="time" id="f-time" class="form-control">
+          </div>
+        </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;" id="fg-mu-age-day">
+      <!-- 2. WALLPAPER FORM -->
+      <div id="form-wall" class="form-block" style="display:none;">
+        <h5>📱 ข้อมูลสำหรับทำวอลเปเปอร์</h5>
+        <p style="font-size:12px; color:#f59e0b; margin-top:-8px;">* ใช้เวลาทำ 5-7 วันทำการ (ยกเว้น + ค่าเร่ง)</p>
+        
+        <div class="form-group"><label>เรื่องที่จะเสริม (มีหมายเหตุ +เรื่องละ 39) *</label><input type="text" id="fw-topic" class="form-control"></div>
+        <div class="form-group"><label>ชื่อ (ชื่อจริงหรือเล่นก็ได้) *</label><input type="text" id="fw-name1" class="form-control"></div>
+        <div class="form-group"><label>ชื่อที่ใส่ในวอล (ใส่หรือไม่ใส่ก็ได้)</label><input type="text" id="fw-name2" class="form-control"></div>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group"><label>วัน (จ-อา) *</label><input type="text" id="fw-day" class="form-control" placeholder="เช่น จันทร์"></div>
+          <div class="form-group"><label>วันที่ (1-31) *</label><input type="number" id="fw-date" class="form-control" min="1" max="31"></div>
+        </div>
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group"><label>เดือน *</label><input type="text" id="fw-month" class="form-control" placeholder="เช่น มกราคม"></div>
+          <div class="form-group"><label>ปีนักษัตร *</label><input type="text" id="fw-zodiac" class="form-control" placeholder="เช่น ชวด"></div>
+        </div>
+        
+        <div class="form-group" style="margin-bottom:0;"><label>สีที่ชอบ *</label><input type="text" id="fw-color" class="form-control" placeholder="เผื่อสีที่ชอบตรงกับสีถูกโฉลก"></div>
+      </div>
+
+      <!-- 3. BIRTH CHART (พื้นดวง/ผูกดวง) FORM -->
+      <div id="form-chart" class="form-block" style="display:none;">
+        <h5>📜 ข้อมูลพื้นดวง / ผูกดวง</h5>
+        <div class="form-group"><label>ชื่อ *</label><input type="text" id="fc-name" class="form-control"></div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group"><label>วันเดือนปีเกิด *</label><input type="text" id="fc-dob" class="form-control" placeholder="เช่น 1 ม.ค. 2540"></div>
+          <div class="form-group"><label>อายุ *</label><input type="number" id="fc-age" class="form-control"></div>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group"><label>เวลาเกิด *</label><input type="time" id="fc-time" class="form-control"></div>
+          <div class="form-group"><label>สถานที่เกิด / สถานะเกิด *</label><input type="text" id="fc-place" class="form-control" placeholder="เช่น กทม."></div>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label>คำถามเน้น 2 คำถาม *</label>
+          <input type="text" id="fc-q1" class="form-control" placeholder="1. ..." style="margin-bottom:8px;">
+          <input type="text" id="fc-q2" class="form-control" placeholder="2. ...">
+        </div>
+      </div>
+
+      <!-- 4. WEB DESIGN FORM -->
+      <div id="form-web" class="form-block" style="display:none;">
+        <h5>💻 ข้อมูลรับทำเว็บไซต์</h5>
         <div class="form-group">
-          <label>อายุ *</label>
-          <input type="number" id="f-age" class="form-control" placeholder="เช่น 22">
+          <label>ชื่อร้าน / ข้อมูลติดต่อ / ส่งเป็นลิ้งค์ *</label>
+          <textarea id="f-web-shop" class="form-control" rows="2"></textarea>
         </div>
         <div class="form-group">
-          <label>เกิดวัน *</label>
-          <select id="f-day" class="form-control">
-            <option value="">-- เลือกวัน --</option>
-            <option value="วันจันทร์">วันจันทร์</option>
-            <option value="วันอังคาร">วันอังคาร</option>
-            <option value="วันพุธ">วันพุธ</option>
-            <option value="วันพฤหัสบดี">วันพฤหัสบดี</option>
-            <option value="วันศุกร์">วันศุกร์</option>
-            <option value="วันเสาร์">วันเสาร์</option>
-            <option value="วันอาทิตย์">วันอาทิตย์</option>
+          <label>รายละเอียดและฟังก์ชันของเว็บ *</label>
+          <textarea id="f-web-detail" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label>ดีไซน์และตัวอย่างที่ชอบ / โทนสี สไตล์ *</label>
+          <input type="text" id="f-web-design" class="form-control">
+        </div>
+      </div>
+
+      <!-- 5. GENERAL MU & HEAL FORM -->
+      <div id="form-general" class="form-block" style="display:none;">
+        <h5>🔮 ข้อมูลส่วนตัว & คำถาม</h5>
+        
+        <div class="form-group">
+          <label>สถานะความสัมพันธ์ *</label>
+          <select id="f-status" class="form-control">
+            <option value="">-- เลือกสถานะ --</option>
+            <option value="โสด">โสด</option>
+            <option value="มีแฟนแล้ว">มีแฟนแล้ว</option>
+            <option value="คุยอยู่ / กำลังศึกษาดูใจ">คุยอยู่ / กำลังศึกษาดูใจ</option>
+            <option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
+          </select>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label>อายุ *</label>
+            <input type="number" id="f-age" class="form-control" placeholder="เช่น 22">
+          </div>
+          <div class="form-group">
+            <label>เกิดวัน *</label>
+            <select id="f-day" class="form-control">
+              <option value="">-- เลือกวัน --</option>
+              <option value="วันจันทร์">วันจันทร์</option>
+              <option value="วันอังคาร">วันอังคาร</option>
+              <option value="วันพุธ">วันพุธ</option>
+              <option value="วันพฤหัสบดี">วันพฤหัสบดี</option>
+              <option value="วันศุกร์">วันศุกร์</option>
+              <option value="วันเสาร์">วันเสาร์</option>
+              <option value="วันอาทิตย์">วันอาทิตย์</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="dynamic-questions"></div>
+
+        <div class="form-group" style="margin-bottom:0;">
+          <label>รูปแบบคำทำนาย / การรับบริการ *</label>
+          <select id="f-type" class="form-control">
+            <option value="พิมพ์">พิมพ์ (Text-only)</option>
+            <option value="โทร">โทร / เสียง</option>
           </select>
         </div>
       </div>
 
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;" id="fg-mu-date-time">
-        <div class="form-group">
-          <label>วันที่จองคิว *</label>
-          <input type="date" id="f-date" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>เวลาที่จอง *</label>
-          <input type="time" id="f-time" class="form-control">
-        </div>
-      </div>
-
-      <div class="form-group" id="fg-type">
-        <label>รูปแบบคำทำนาย / การรับบริการ *</label>
-        <select id="f-type" class="form-control">
-          <option value="พิมพ์">พิมพ์ (Text-only)</option>
-          <option value="โทร">โทร / เสียง</option>
-        </select>
-      </div>
-
-      <button class="btn-action" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุป & ส่งข้อมูล</button>
+      <button class="btn-action" onclick="generateSummaryAndSend()" style="margin-top:20px;">✨ สร้างข้อความสรุป & ส่งข้อมูล</button>
     </div>
   </div>
 
@@ -310,7 +367,7 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
     <div class="cttl">🎉 สรุปข้อความสำหรับส่งให้แอดมินทาง LINE</div>
     <div class="cb" style="margin-bottom:12px;">คัดลอกข้อความด้านล่างนี้ แล้วกดปุ่มเปิด LINE เพื่อส่งให้แอดมินพร้อมแนบสลิปได้เลยค่ะ</div>
     <div class="form-group">
-      <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:12px; background:#020610; color:#c8deff; cursor:text;"></textarea>
+      <textarea id="summary-text" class="form-control" rows="12" readonly style="font-size:12px; background:#020610; color:#c8deff; cursor:text;"></textarea>
     </div>
     <button class="cpbtn" style="width:100%; justify-content:center; margin-bottom:10px;" onclick="copySummaryText()">📋 คัดลอกข้อความสรุป</button>
     <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="background:#00c355; text-decoration:none; text-align:center; display:block;">💚 เปิดแอป LINE (ส่งข้อมูล + สลิป)</a>
@@ -470,9 +527,15 @@ const defaultData = [
 
 let productData = [];
 let currentCart = [];
+
+// Form States
+let hasPhone = false;
+let hasWall = false;
+let hasChart = false;
+let hasWeb = false;
+let hasGeneral = false;
+let hasHeal = false;
 let totalDynamicQuestions = 0;
-let hasWebsite = false;
-let hasMu = false;
 
 // Initialize System
 document.addEventListener('DOMContentLoaded', () => {
@@ -510,7 +573,6 @@ function renderProducts() {
   productData.forEach((sec) => {
     html += `<div class="sec fi">${sec.sectionTitle}</div><div class="grid fi">`;
     sec.cards.forEach((card) => {
-      // By applying 'full' conditionally on 1-card sections, they stretch across 2 columns seamlessly
       const isFull = (sec.cards.length === 1) ? 'full' : '';
       html += `<div class="card ${isFull}">
         <div class="ct"></div>
@@ -638,27 +700,39 @@ function updateCartTotal() {
 
   let html = '';
   let subtotal = 0;
+  
+  // Reset Flags
+  hasPhone = false;
+  hasWall = false;
+  hasChart = false;
+  hasWeb = false;
+  hasGeneral = false;
+  hasHeal = false;
   totalDynamicQuestions = 0;
-  hasWebsite = false;
-  hasMu = false;
 
   currentCart.forEach((item, index) => {
     subtotal += item.price;
     html += `<div style="display:flex; justify-content:space-between; margin-bottom:4px; border-bottom:1px solid rgba(30,111,255,0.1); padding-bottom:4px;"><span>- ${item.name}</span> <span>${item.price}.- <button onclick="removeItem(${index})" style="background:none; border:none; color:#ff6b6b; cursor:pointer; font-family:'Mitr'; font-size:12px;">[ลบ]</button></span></div>`;
     
-    if (item.category === 'รับทำเว็บไซต์') {
-      hasWebsite = true;
-    } else {
-      hasMu = true;
-    }
-
-    // Logic for generating questions dynamically based on package name
-    if(item.category === 'ดูดวง') {
-      const match = item.name.match(/(\d+)\s*คำถาม/);
-      if (match) {
-        totalDynamicQuestions += parseInt(match[1]);
-      } else if (item.name.toLowerCase().includes("yes or no") || item.name.includes("1 คำถาม")) {
-        totalDynamicQuestions += 1;
+    // Categorize
+    if (item.category === 'โทรดูดวง') hasPhone = true;
+    else if (item.category === 'วอลเปเปอร์') hasWall = true;
+    else if (item.category === 'รับทำเว็บไซต์') hasWeb = true;
+    else if (item.category === 'พื้นที่รับฟัง') hasHeal = true;
+    
+    // Distinguish "พื้นดวง" vs "ดูดวงทั่วไป"
+    if (item.category === 'ดูดวง' || item.category === 'พื้นดวง') {
+      if (item.name.includes('พื้นดวง') || item.name.includes('ผูกดวง') || item.category === 'พื้นดวง') {
+        hasChart = true;
+      } else {
+        hasGeneral = true;
+        // Count questions for general reading
+        const match = item.name.match(/(\d+)\s*คำถาม/);
+        if (match) {
+          totalDynamicQuestions += parseInt(match[1]);
+        } else if (item.name.toLowerCase().includes("yes or no") || item.name.includes("1 คำถาม")) {
+          totalDynamicQuestions += 1;
+        }
       }
     }
   });
@@ -671,48 +745,48 @@ function updateCartTotal() {
   listEl.innerHTML = html;
   totalEl.textContent = subtotal;
 
-  // Manage Dynamic Form Fields Visibility
   setupDynamicForm(subtotal);
 }
 
 function setupDynamicForm(subtotal) {
-  // Questions Generator
+  // Toggle Visibility of Sections
+  document.getElementById('form-appt').style.display = (hasPhone || hasGeneral || hasHeal) ? 'block' : 'none';
+  document.getElementById('form-wall').style.display = hasWall ? 'block' : 'none';
+  document.getElementById('form-chart').style.display = hasChart ? 'block' : 'none';
+  document.getElementById('form-web').style.display = hasWeb ? 'block' : 'none';
+  document.getElementById('form-general').style.display = (hasGeneral || hasHeal) ? 'block' : 'none';
+
+  // Dynamic Questions for General / Heal
   const dQuestionsDiv = document.getElementById('dynamic-questions');
   dQuestionsDiv.innerHTML = '';
-  
-  if (totalDynamicQuestions > 0) {
-    for(let i=1; i<=totalDynamicQuestions; i++) {
-      dQuestionsDiv.innerHTML += `
+  if (hasGeneral || hasHeal) {
+    if (totalDynamicQuestions > 0) {
+      for(let i=1; i<=totalDynamicQuestions; i++) {
+        dQuestionsDiv.innerHTML += `
+        <div class="form-group">
+          <label>คำถามที่ ${i} *</label>
+          <textarea class="form-control dyn-q" rows="2" placeholder="พิมพ์คำถามที่ ${i} ของคุณ..."></textarea>
+        </div>`;
+      }
+    } else {
+      dQuestionsDiv.innerHTML = `
       <div class="form-group">
-        <label>คำถามที่ ${i} *</label>
-        <textarea class="form-control dyn-q" rows="2" placeholder="พิมพ์คำถามที่ ${i} ของคุณ..."></textarea>
+        <label>รายละเอียดที่ต้องการสอบถามเพิ่มเติม (ถ้ามี)</label>
+        <textarea class="form-control dyn-q" rows="3" placeholder="ระบุรายละเอียด..."></textarea>
       </div>`;
     }
-  } else if (hasMu) {
-    dQuestionsDiv.innerHTML = `
-    <div class="form-group">
-      <label>รายละเอียดที่ต้องการสอบถามเพิ่มเติม (ถ้ามี)</label>
-      <textarea class="form-control dyn-q" rows="3" placeholder="ระบุรายละเอียด..."></textarea>
-    </div>`;
   }
 
-  // Toggle Visibility for Mu vs Website
-  document.getElementById('fg-mu-status').style.display = hasMu ? 'block' : 'none';
-  document.getElementById('fg-mu-age-day').style.display = hasMu ? 'grid' : 'none';
-  document.getElementById('fg-mu-date-time').style.display = hasMu ? 'grid' : 'none';
-  document.getElementById('fg-type').style.display = hasMu ? 'block' : 'none';
-
-  document.getElementById('fg-web-brief').style.display = hasWebsite ? 'block' : 'none';
-  document.getElementById('fg-web-color').style.display = hasWebsite ? 'block' : 'none';
-
-  // Rule: Check pure price < 69 automatically lock type to "พิมพ์" (Checking pure subtotal without urgent queue)
+  // Rule: Check pure price < 69 automatically lock type to "พิมพ์"
   const pureSubtotal = subtotal - (document.getElementById('urgent-queue').checked ? 59 : 0);
   const typeSelect = document.getElementById('f-type');
-  if (typeSelect && pureSubtotal < 69) {
-    typeSelect.value = 'พิมพ์';
-    typeSelect.disabled = true;
-  } else if (typeSelect) {
-    typeSelect.disabled = false;
+  if (typeSelect && hasGeneral) {
+    if (pureSubtotal < 69) {
+      typeSelect.value = 'พิมพ์';
+      typeSelect.disabled = true;
+    } else {
+      typeSelect.disabled = false;
+    }
   }
 }
 
@@ -749,55 +823,111 @@ function generateSummaryAndSend() {
   }
 
   const name = document.getElementById('f-name').value.trim();
-  if (!name) { alert('กรุณากรอกชื่อเล่น/แอคเคาท์ติดต่อค่ะ'); return; }
+  if (!name) { alert('กรุณากรอกชื่อเล่น/แอคเคาท์ติดต่อหลักค่ะ'); return; }
 
+  let itemsStr = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
+  let totalPrice = document.getElementById('cart-total-price').textContent;
+  
   let summary = `🧸 ขอบคุณสำหรับการจองบริการกับอาเต๋านะคะ \n‧┈┈┈┈┈┈‧ \n` +
                 `🛒 ออเดอร์จาก: ${name}\n` +
-                `📋 รายการที่สั่ง:\n${currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n')}`;
+                `📋 รายการที่สั่ง:\n${itemsStr}\n`;
   
   if (document.getElementById('urgent-queue').checked) {
-    summary += `\n- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)`;
+    summary += `- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)\n`;
   }
-  summary += `\n💰 ยอดรวมโอน: ${document.getElementById('cart-total-price').textContent} บาท\n` +
-             `✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\n`;
+  summary += `💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\n`;
+  summary += `-----------------------------\n`;
 
-  // Validation & Append for Website
-  if (hasWebsite) {
-    const brief = document.getElementById('f-web-brief').value.trim();
-    const color = document.getElementById('f-web-color').value.trim();
-    if(!brief || !color) { alert('กรุณากรอกข้อมูลบรีฟเว็บไซต์และโทนสีให้ครบถ้วนค่ะ'); return; }
-    summary += `-----------------------------\n💻 ข้อมูลทำเว็บไซต์:\nบรีฟงาน: ${brief}\nโทนสี/สไตล์: ${color}\n`;
-  }
+  // 1. Phone Appt / End Time Calculation
+  if (hasPhone || hasGeneral || hasHeal) {
+    let apptDate = document.getElementById('f-date').value;
+    let apptTime = document.getElementById('f-time').value;
+    
+    if (hasPhone) {
+      let totalMins = 0;
+      currentCart.forEach(item => {
+        if(item.category === 'โทรดูดวง' || item.category === 'พื้นที่รับฟัง') {
+          if(item.name.includes('10 นาที')) totalMins += 10;
+          else if(item.name.includes('15 นาที')) totalMins += 15;
+          else if(item.name.includes('30 นาที')) totalMins += 30;
+          else if(item.name.includes('1 ชั่วโมง') || item.name.includes('60 นาที')) totalMins += 60;
+          else if(item.name.includes('90 นาที')) totalMins += 90;
+        }
+      });
+      
+      let endTimeStr = "";
+      if (apptTime && totalMins > 0) {
+        let [hr, min] = apptTime.split(':').map(Number);
+        let d = new Date();
+        d.setHours(hr, min, 0);
+        d.setMinutes(d.getMinutes() + totalMins);
+        let eHr = String(d.getHours()).padStart(2, '0');
+        let eMin = String(d.getMinutes()).padStart(2, '0');
+        endTimeStr = `${eHr}:${eMin}`;
+      }
 
-  // Validation & Append for Mu-Space
-  if (hasMu) {
-    let allQsFilled = true;
-    const dynQs = document.querySelectorAll('.dyn-q');
-    let qText = '';
-    dynQs.forEach((q, idx) => {
-      const val = q.value.trim();
-      if(totalDynamicQuestions > 0 && !val) allQsFilled = false;
-      qText += (totalDynamicQuestions > 0 ? `คำถามที่ ${idx+1}: ` : 'รายละเอียดเพิ่มเติม: ') + (val || '-') + '\n';
-    });
-
-    if(!allQsFilled) { alert('กรุณากรอกคำถามให้ครบถ้วนตามจำนวนที่เลือกค่ะ'); return; }
-
-    const status = document.getElementById('f-status').value;
-    const age = document.getElementById('f-age').value.trim();
-    const day = document.getElementById('f-day').value;
-    const date = document.getElementById('f-date').value;
-    const time = document.getElementById('f-time').value;
-    const type = document.getElementById('f-type').value;
-
-    if (!status || !age || !day || !date || !time) {
-      alert('กรุณากรอกข้อมูลส่วนตัวสำหรับดูดวงให้ครบถ้วนค่ะ (สถานะ, อายุ, วันเกิด, วันเวลาจองคิว)'); return;
+      summary += `📞 ข้อมูลการจองคิวโทร:\n`;
+      summary += `วันที่จองคิว: ${apptDate}\n`;
+      if(endTimeStr) {
+        summary += `คิวของลูกดวง: เวลา ${apptTime} น. | หมดเวลา ${endTimeStr} น.\n`;
+      } else {
+        summary += `เวลาที่จอง: ${apptTime} น.\n`;
+      }
+      summary += `-----------------------------\n`;
     }
+  }
 
-    summary += `-----------------------------\n🔮 ข้อมูลบริการ:\n` +
-               `📅 จองคิววันที่: ${date} เวลา ${time} น.\n` +
-               `สถานะ: ${status} | อายุ: ${age} ปี | เกิดวัน: ${day}\n\n` +
-               `${qText}\n` +
-               `รูปแบบการรับคำทำนาย: ${type}\n`;
+  // 2. Wallpaper
+  if (hasWall) {
+    summary += `รหัส: At:001\nหัวข้อ: วอลเปเปอร์ / สิ่งที่ต้องแจ้งในการทำวอลเปเปอร์สายมู กับแม่หมออาเต๋า\n`;
+    summary += `เรื่องที่จะเสริม: ${document.getElementById('fw-topic').value}\n`;
+    summary += `ชื่อ: ${document.getElementById('fw-name1').value}\n`;
+    summary += `ชื่อที่ใส่ในวอล: ${document.getElementById('fw-name2').value || '-'}\n`;
+    summary += `วัน: ${document.getElementById('fw-day').value}\n`;
+    summary += `วันที่: ${document.getElementById('fw-date').value}\n`;
+    summary += `เดือน: ${document.getElementById('fw-month').value}\n`;
+    summary += `ปีนักษัตร: ${document.getElementById('fw-zodiac').value}\n`;
+    summary += `สีที่ชอบ: ${document.getElementById('fw-color').value}\n`;
+    summary += `-----------------------------\n`;
+  }
+
+  // 3. Chart
+  if (hasChart) {
+    summary += `📜 ข้อมูลพื้นดวง / ผูกดวง:\n`;
+    summary += `ชื่อ: ${document.getElementById('fc-name').value}\n`;
+    summary += `วันเดือนปีเกิด: ${document.getElementById('fc-dob').value}\n`;
+    summary += `อายุ: ${document.getElementById('fc-age').value}\n`;
+    summary += `เวลาเกิด: ${document.getElementById('fc-time').value}\n`;
+    summary += `สถานที่/สถานะเกิด: ${document.getElementById('fc-place').value}\n`;
+    summary += `คำถามเน้น:\n1. ${document.getElementById('fc-q1').value}\n2. ${document.getElementById('fc-q2').value}\n`;
+    summary += `-----------------------------\n`;
+  }
+
+  // 4. Web
+  if (hasWeb) {
+    summary += `💻 ข้อมูลรับทำเว็บไซต์:\n`;
+    summary += `ชื่อร้าน/ข้อมูลติดต่อ/ลิ้งค์: ${document.getElementById('f-web-shop').value}\n`;
+    summary += `รายละเอียดและฟังก์ชัน: ${document.getElementById('f-web-detail').value}\n`;
+    summary += `ดีไซน์และโทนสีที่ชอบ: ${document.getElementById('f-web-design').value}\n`;
+    summary += `-----------------------------\n`;
+  }
+
+  // 5. General / Heal
+  if (hasGeneral || hasHeal) {
+    summary += `🔮 ข้อมูลดวงทั่วไป / ฮีลใจ:\n`;
+    if (!hasPhone) { // Avoid duplicating appt time if phone already printed it
+      summary += `วันที่จองคิว: ${document.getElementById('f-date').value} เวลา ${document.getElementById('f-time').value} น.\n`;
+    }
+    summary += `สถานะ: ${document.getElementById('f-status').value} | อายุ: ${document.getElementById('f-age').value} ปี | เกิดวัน: ${document.getElementById('f-day').value}\n\n`;
+    
+    const dynQs = document.querySelectorAll('.dyn-q');
+    dynQs.forEach((q, idx) => {
+      let val = q.value.trim();
+      summary += (totalDynamicQuestions > 0 ? `คำถามที่ ${idx+1}: ` : 'รายละเอียดเพิ่มเติม: ') + (val || '-') + '\n';
+    });
+    
+    summary += `\nรูปแบบการรับบริการ: ${document.getElementById('f-type').value}\n`;
+    summary += `-----------------------------\n`;
   }
 
   document.getElementById('summary-text').value = summary;
