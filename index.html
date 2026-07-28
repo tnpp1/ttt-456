@@ -53,7 +53,7 @@ border:1px solid rgba(30,111,255,.4);background:rgba(30,111,255,.12);color:#90c8
 color:#00d4ff;margin:24px 0 14px;display:flex;align-items:center;gap:10px}
 .sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,212,255,.45),transparent)}
 
-/* GRID & CARDS */
+/* GRID & CARDS (2-Column Symmetric) */
 .grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:24px;}
 @media(min-width:640px){
   .grid{grid-template-columns:repeat(2, 1fr);align-items:stretch;}
@@ -510,6 +510,7 @@ function renderProducts() {
   productData.forEach((sec) => {
     html += `<div class="sec fi">${sec.sectionTitle}</div><div class="grid fi">`;
     sec.cards.forEach((card) => {
+      // By applying 'full' conditionally on 1-card sections, they stretch across 2 columns seamlessly
       const isFull = (sec.cards.length === 1) ? 'full' : '';
       html += `<div class="card ${isFull}">
         <div class="ct"></div>
@@ -536,14 +537,21 @@ function renderProducts() {
   container.innerHTML = html;
 }
 
-// Admin Panel Logic
+// Admin Panel Logic with Password Protection
 function openAdmin() {
-  renderAdminPanel();
-  document.getElementById('admin-modal').style.display = 'block';
+  const pass = prompt("🔒 กรุณากรอกรหัสผ่านเพื่อเข้าสู่ระบบจัดการร้าน:");
+  if (pass === "1164") {
+    renderAdminPanel();
+    document.getElementById('admin-modal').style.display = 'block';
+  } else if (pass !== null) {
+    alert("❌ รหัสผ่านไม่ถูกต้อง! ไม่อนุญาตให้เข้าใช้งาน");
+  }
 }
+
 function closeAdmin() {
   document.getElementById('admin-modal').style.display = 'none';
 }
+
 function updateDataFromDOM() {
   productData.forEach((sec, sIdx) => {
     sec.cards.forEach((card, cIdx) => {
@@ -556,6 +564,7 @@ function updateDataFromDOM() {
     });
   });
 }
+
 function renderAdminPanel() {
   let html = '';
   productData.forEach((sec, sIdx) => {
@@ -576,17 +585,20 @@ function renderAdminPanel() {
   });
   document.getElementById('admin-content').innerHTML = html;
 }
+
 function addItem(sIdx, cIdx) {
   updateDataFromDOM();
   productData[sIdx].cards[cIdx].items.push({name: "ชื่อบริการใหม่", price: 0});
   renderAdminPanel();
 }
+
 function deleteItem(sIdx, cIdx, iIdx) {
   if(!confirm("แน่ใจหรือไม่ว่าต้องการลบสินค้านี้?")) return;
   updateDataFromDOM();
   productData[sIdx].cards[cIdx].items.splice(iIdx, 1);
   renderAdminPanel();
 }
+
 function saveAdmin() {
   updateDataFromDOM();
   localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
@@ -594,6 +606,7 @@ function saveAdmin() {
   renderProducts();
   showToast('✅ บันทึกข้อมูลร้านค้าสำเร็จ!');
 }
+
 function resetAdmin() {
   if(confirm("คำเตือน: การรีเซ็ตจะทำให้ข้อมูลที่คุณแก้ไขหายไปทั้งหมด และกลับไปเป็นค่าเริ่มต้นของระบบ ยืนยันหรือไม่?")) {
     localStorage.removeItem('muSpaceProducts');
@@ -639,7 +652,7 @@ function updateCartTotal() {
       hasMu = true;
     }
 
-    // Logic for generating questions
+    // Logic for generating questions dynamically based on package name
     if(item.category === 'ดูดวง') {
       const match = item.name.match(/(\d+)\s*คำถาม/);
       if (match) {
@@ -658,7 +671,7 @@ function updateCartTotal() {
   listEl.innerHTML = html;
   totalEl.textContent = subtotal;
 
-  // Manage Dynamic Form Fields
+  // Manage Dynamic Form Fields Visibility
   setupDynamicForm(subtotal);
 }
 
@@ -683,7 +696,7 @@ function setupDynamicForm(subtotal) {
     </div>`;
   }
 
-  // Toggle Visibility
+  // Toggle Visibility for Mu vs Website
   document.getElementById('fg-mu-status').style.display = hasMu ? 'block' : 'none';
   document.getElementById('fg-mu-age-day').style.display = hasMu ? 'grid' : 'none';
   document.getElementById('fg-mu-date-time').style.display = hasMu ? 'grid' : 'none';
@@ -692,7 +705,7 @@ function setupDynamicForm(subtotal) {
   document.getElementById('fg-web-brief').style.display = hasWebsite ? 'block' : 'none';
   document.getElementById('fg-web-color').style.display = hasWebsite ? 'block' : 'none';
 
-  // Rule: Check price < 69 automatically lock type to "พิมพ์" (Checking pure subtotal without urgent)
+  // Rule: Check pure price < 69 automatically lock type to "พิมพ์" (Checking pure subtotal without urgent queue)
   const pureSubtotal = subtotal - (document.getElementById('urgent-queue').checked ? 59 : 0);
   const typeSelect = document.getElementById('f-type');
   if (typeSelect && pureSubtotal < 69) {
