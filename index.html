@@ -6,12 +6,18 @@
 <title>AhTao Mu-Space 🔮✨</title>
 <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-html{background:#050d1a;background-color:#050d1a; scroll-behavior: smooth;}
+html{background:#050d1a;background-color:#050d1a}
 body{margin:0;padding:0;background:#050d1a;background-color:#050d1a;color:#c8deff;font-family:'Mitr',sans-serif;min-height:100vh;-webkit-text-size-adjust:100%}
 *{box-sizing:border-box}
 
-#bgg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 55% at 15% 5%,rgba(30,111,255,.22) 0%,transparent 65%),radial-gradient(ellipse 55% 45% at 88% 90%,rgba(0,212,255,.13) 0%,transparent 60%),#050d1a}
-#bgr{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(30,111,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,.055) 1px,transparent 1px);background-size:40px 40px;animation:gm 20s linear infinite}
+#bgg{position:fixed;inset:0;z-index:0;pointer-events:none;
+background:
+radial-gradient(ellipse 70% 55% at 15% 5%,rgba(30,111,255,.22) 0%,transparent 65%),
+radial-gradient(ellipse 55% 45% at 88% 90%,rgba(0,212,255,.13) 0%,transparent 60%),
+#050d1a}
+#bgr{position:fixed;inset:0;z-index:0;pointer-events:none;
+background-image:linear-gradient(rgba(30,111,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(30,111,255,.055) 1px,transparent 1px);
+background-size:40px 40px;animation:gm 20s linear infinite}
 @keyframes gm{to{background-position:0 40px}}
 #pts{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .p{position:absolute;border-radius:50%;opacity:0;animation:fp linear infinite}
@@ -19,98 +25,173 @@ body{margin:0;padding:0;background:#050d1a;background-color:#050d1a;color:#c8def
 
 #w{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:26px 14px 80px}
 
-/* HEADER & BALANCED SHORTCUTS */
-.hdr{text-align:center;padding:36px 20px 24px;background:linear-gradient(160deg,#0d2448 0%,#071224 100%);border:1px solid rgba(30,111,255,.38);border-radius:22px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(30,111,255,.16),inset 0 1px 0 rgba(255,255,255,.05)}
-.hg{position:absolute;top:-70px;left:50%;transform:translateX(-50%);width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(30,111,255,.24) 0%,transparent 68%);pointer-events:none}
-.hbdg{display:inline-block;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#00d4ff;border:1px solid rgba(0,212,255,.48);padding:4px 14px;border-radius:40px;background:rgba(0,212,255,.07);margin-bottom:14px;animation:gp 3s ease-in-out infinite}
+/* HEADER */
+.hdr{text-align:center;padding:36px 20px 32px;
+background:linear-gradient(160deg,#0d2448 0%,#071224 100%);
+border:1px solid rgba(30,111,255,.38);border-radius:22px;margin-bottom:28px;
+position:relative;overflow:hidden;
+box-shadow:0 0 60px rgba(30,111,255,.16),inset 0 1px 0 rgba(255,255,255,.05)}
+.hg{position:absolute;top:-70px;left:50%;transform:translateX(-50%);width:300px;height:300px;border-radius:50%;
+background:radial-gradient(circle,rgba(30,111,255,.24) 0%,transparent 68%);pointer-events:none}
+.hbdg{display:inline-block;font-size:12px;letter-spacing:1px;text-transform:uppercase;
+color:#00d4ff;border:1px solid rgba(0,212,255,.48);padding:4px 14px;border-radius:40px;
+background:rgba(0,212,255,.07);margin-bottom:14px;animation:gp 3s ease-in-out infinite}
 @keyframes gp{0%,100%{box-shadow:0 0 8px rgba(0,212,255,.3)}50%{box-shadow:0 0 24px rgba(0,212,255,.68)}}
-.sn{font-size:clamp(2rem,6.5vw,3.2rem);font-weight:700;line-height:1.2;background:linear-gradient(135deg,#60a5fa 0%,#00d4ff 50%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;letter-spacing:-1px}
+.sn{font-size:clamp(2rem,6.5vw,3.2rem);font-weight:700;line-height:1.2;
+background:linear-gradient(135deg,#60a5fa 0%,#00d4ff 50%,#a78bfa 100%);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+margin-bottom:8px;letter-spacing:-1px}
 .stag{font-size:14px;color:#6a8fca;margin-bottom:20px;line-height:1.6}
-
-/* SHORTCUT LINKS (BALANCED) */
-.hl-links{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
-.lb{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:40px;font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;border:1px solid rgba(30,111,255,.4);background:rgba(30,111,255,.12);color:#90c8ff; cursor:pointer;}
+.hl-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.lb{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:40px;
+font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;
+border:1px solid rgba(30,111,255,.4);background:rgba(30,111,255,.12);color:#90c8ff}
 .lb:hover{background:rgba(30,111,255,.3);border-color:#1e6fff;color:#fff;box-shadow:0 0 20px rgba(30,111,255,.3);transform:translateY(-2px)}
 
-.admin-btn {position:absolute; top:15px; right:15px; background:rgba(0,0,0,0.5); border:1px solid #7c3aed; color:#c4b5fd; padding:5px 10px; border-radius:10px; font-size:11px; cursor:pointer; z-index:10;}
-
-/* BALANCED SECTION & GRID */
-.sec{font-size:14px;font-weight:500;letter-spacing:2px;color:#00d4ff;margin:28px 0 14px;display:flex;align-items:center;gap:10px; scroll-margin-top:20px;}
+/* SECTION TITLE */
+.sec{font-size:15px;font-weight:500;letter-spacing:1px;
+color:#00d4ff;margin:24px 0 14px;display:flex;align-items:center;gap:10px}
 .sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,212,255,.45),transparent)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:24px}
-.full{grid-column:1/-1}
 
-/* SYMMETRIC CARD STYLING */
-.card{background:linear-gradient(150deg,#0e2d5a 0%,#071224 100%);border:1px solid rgba(30,111,255,.26);border-radius:18px;padding:22px 20px;position:relative;overflow:hidden;transition:all .3s; display:flex; flex-direction:column; justify-content:space-between;}
+/* GRID & CARDS */
+.grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:24px;}
+@media(min-width:640px){
+  .grid{grid-template-columns:repeat(2, 1fr);align-items:stretch;}
+}
+.full{grid-column:1/-1}
+.card{background:linear-gradient(150deg,#0e2d5a 0%,#071224 100%);
+border:1px solid rgba(30,111,255,.26);border-radius:18px;padding:22px 20px;
+position:relative;overflow:hidden;transition:all .3s; display:flex; flex-direction:column; height:100%;}
 .card:hover{border-color:rgba(30,111,255,.58);box-shadow:0 8px 40px rgba(30,111,255,.2);transform:translateY(-3px)}
-.ct{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#1e6fff,#00d4ff,transparent);opacity:0;transition:opacity .3s}
+.ct{position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,transparent,#1e6fff,#00d4ff,transparent);opacity:0;transition:opacity .3s}
 .card:hover .ct{opacity:1}
 .ci{font-size:26px;margin-bottom:10px;display:block;filter:drop-shadow(0 0 8px rgba(30,111,255,.5))}
-.cttl{font-size:16px;font-weight:600;color:#e8f4ff;margin-bottom:12px}
-.cb{font-size:13px;color:#6a8fca;line-height:1.8; flex:1;}
-.row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(30,111,255,.09)}
+.cttl{font-size:16px;font-weight:600;color:#e8f4ff;margin-bottom:16px; border-bottom: 1px solid rgba(30,111,255,0.2); padding-bottom: 8px;}
+.cb{font-size:13px;color:#6a8fca;line-height:1.8}
+.row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(30,111,255,.09)}
 .row:last-child{border-bottom:none}
 
-.pt{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(0,212,255,0.15) 0%,rgba(30,111,255,0.3) 100%);border:1px solid rgba(0,212,255,0.5);border-radius:8px;padding:3px 10px;font-size:13px;color:#00d4ff;font-weight:600;box-shadow:0 0 12px rgba(0,212,255,0.4),inset 0 0 6px rgba(30,111,255,0.2);}
-.add-btn {background:#1e6fff; border:none; color:white; border-radius:6px; width:26px; height:26px; font-weight:bold; cursor:pointer; margin-left:8px; transition:0.2s; display:inline-flex; align-items:center; justify-content:center; font-size:12px;}
-.add-btn:hover {background:#00d4ff; transform:scale(1.1);}
+.item-name {
+  flex: 1;
+  font-size: 13.5px;
+  color: #e8f4ff;
+  padding-right: 12px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.btn-add {
+  background: linear-gradient(135deg, #1e6fff, #00d4ff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+  margin-left: 8px;
+  box-shadow: 0 2px 8px rgba(30,111,255,.4);
+}
+.btn-add:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,212,255,.6);
+}
 
-.btn-action{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 20px;border:none;border-radius:14px;cursor:pointer;font-family:'Mitr',sans-serif;font-size:14px;font-weight:600;color:#fff;background:linear-gradient(135deg,#1e6fff,#00d4ff);box-shadow:0 4px 24px rgba(30,111,255,.48);transition:all .25s;margin-top:14px}
+.pt, .bdg {
+  display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(0,212,255,0.15) 0%,rgba(30,111,255,0.3) 100%);
+  border:1px solid rgba(0,212,255,0.5);border-radius:8px;padding:4px 12px;
+  font-size:13px;color:#00d4ff;font-weight:600;
+  box-shadow:0 0 12px rgba(0,212,255,0.4),inset 0 0 6px rgba(30,111,255,0.2);
+  white-space: nowrap;
+}
+
+/* BUTTONS */
+.btn-action{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 20px;border:none;border-radius:14px;cursor:pointer;
+font-family:'Mitr',sans-serif;font-size:14px;font-weight:600;color:#fff;
+background:linear-gradient(135deg,#1e6fff,#00d4ff);
+box-shadow:0 4px 24px rgba(30,111,255,.48);transition:all .25s;margin-top:14px}
 .btn-action:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(30,111,255,.62)}
+.btn-admin{position:absolute; top:16px; right:16px; width:44px; height:44px; border-radius:50%;
+background:rgba(30,111,255,0.15); border:1px solid rgba(30,111,255,0.4); font-size:20px; cursor:pointer; color:#fff;
+z-index:20; transition:all .3s; display:flex; align-items:center; justify-content:center;}
+.btn-admin:hover{background:rgba(30,111,255,0.3); transform:rotate(90deg);}
 
 /* FORM CONTROLS */
 .form-group{margin-bottom:16px}
 .form-group label{display:block;font-size:13px;color:#90c8ff;margin-bottom:6px;font-weight:500}
-.form-control{width:100%;padding:12px 14px;background:#050d1a;border:1px solid rgba(30,111,255,0.4);border-radius:12px;color:#fff;font-family:'Mitr',sans-serif;font-size:14px;outline:none;transition:all .2s}
+.form-control{width:100%;padding:12px 14px;background:#050d1a;border:1px solid rgba(30,111,255,0.4);border-radius:12px;color:#fff;font-family:'Mitr',sans-serif;font-size:14px;outline:none;transition:all .2s;resize:vertical;}
 .form-control:focus{border-color:#00d4ff;box-shadow:0 0 12px rgba(0,212,255,0.3)}
-.cpbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 30px;border:none;border-radius:40px;cursor:pointer;font-family:'Mitr',sans-serif;font-size:14px;font-weight:500;color:#fff;background:linear-gradient(135deg,#1e6fff,#00d4ff);box-shadow:0 4px 24px rgba(30,111,255,.48);transition:all .25s}
+
+/* BANK */
+.bnk{background:linear-gradient(140deg,#102040 0%,#071224 100%);
+border:1px solid rgba(30,111,255,.48);border-radius:18px;padding:26px 20px;
+text-align:center;margin-bottom:22px;position:relative;overflow:hidden;
+box-shadow:0 0 40px rgba(30,111,255,.12)}
+.bnum{display:block;font-size:clamp(22px,6vw,32px);font-weight:600;
+letter-spacing:3px;color:#00d4ff;text-shadow:0 0 24px rgba(0,212,255,.6);margin-bottom:18px}
+.cpbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 30px;border:none;border-radius:40px;cursor:pointer;
+font-family:'Mitr',sans-serif;font-size:14px;font-weight:500;color:#fff;
+background:linear-gradient(135deg,#1e6fff,#00d4ff);
+box-shadow:0 4px 24px rgba(30,111,255,.48);transition:all .25s}
+.cpbtn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(30,111,255,.62)}
 
 /* MODAL ADMIN */
-.modal {display:none; position:fixed; z-index:999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(5px);}
-.modal-content {background:#071224; border:1px solid #7c3aed; margin:5% auto; padding:20px; border-radius:16px; width:90%; max-width:500px; max-height:85vh; overflow-y:auto; color:#fff;}
-.adm-row {display:flex; gap:8px; margin-bottom:10px; align-items:center;}
-.adm-input {flex:1; background:#050d1a; border:1px solid #3f6090; color:#fff; padding:8px; border-radius:6px; font-family:'Mitr'; font-size:13px;}
-.adm-del {background:#ff4757; border:none; color:white; padding:8px; border-radius:6px; cursor:pointer;}
+#admin-modal {
+  display:none; position:fixed; inset:0; background:rgba(0,5,15,0.85);
+  backdrop-filter:blur(4px); z-index:10000; overflow-y:auto; padding:20px;
+}
+.admin-box {
+  max-width:700px; margin:20px auto; background:linear-gradient(150deg,#0e2d5a 0%,#071224 100%);
+  border:1px solid rgba(30,111,255,.5); border-radius:20px; padding:24px; box-shadow:0 10px 50px rgba(0,0,0,0.5);
+}
 
 /* TOAST */
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(200px);background:linear-gradient(135deg,#00a860,#00d87a);color:#fff;padding:12px 26px;border-radius:40px;font-weight:500;font-size:14px;z-index:9999;pointer-events:none;box-shadow:0 8px 32px rgba(0,200,120,.4);transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(200px);
+background:linear-gradient(135deg,#00a860,#00d87a);color:#fff;
+padding:12px 26px;border-radius:40px;font-weight:500;font-size:14px;
+z-index:10001;pointer-events:none;box-shadow:0 8px 32px rgba(0,200,120,.4);
+transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
 .toast.on{transform:translateX(-50%) translateY(0);visibility:visible}
-@media(max-width:520px){.grid{grid-template-columns:1fr}}
+
+/* FADE IN */
+.fi{opacity:0;transform:translateY(22px);animation:fi .6s forwards}
+@keyframes fi{to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 
-<div id="bgg"></div><div id="bgr"></div><div id="pts"></div>
+<div id="bgg"></div>
+<div id="bgr"></div>
+<div id="pts"></div>
 
 <div id="w">
 
-  <!-- HEADER & SHORTCUTS -->
-  <div class="hdr">
+  <!-- HEADER -->
+  <div class="hdr fi">
     <div class="hg"></div>
-    <button class="admin-btn" onclick="openAdmin()">⚙️ จัดการร้าน</button>
+    <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">⚙️</button>
     <div class="hbdg">🔮 Mu-Space & Services Official</div>
     <div class="sn">AhTao<br>Mu-Space</div>
-    <div class="stag">✨ ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์</div>
-    
-    <!-- ปุ่มทางลัดสมดุล -->
+    <div class="stag">✨ ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร</div>
     <div class="hl-links">
-      <button class="lb" onclick="document.getElementById('sec-duduang').scrollIntoView({behavior: 'smooth'})">🔮 ดูดวง</button>
-      <button class="lb" onclick="document.getElementById('sec-call').scrollIntoView({behavior: 'smooth'})">📞 โทร</button>
-      <button class="lb" onclick="document.getElementById('sec-heal').scrollIntoView({behavior: 'smooth'})">🎧 ฮีลใจ</button>
-      <button class="lb" onclick="document.getElementById('sec-wall').scrollIntoView({behavior: 'smooth'})">🖼️ วอลเปเปอร์</button>
-      <button class="lb" onclick="document.getElementById('sec-web').scrollIntoView({behavior: 'smooth'})">💻 เว็บไซต์</button>
+      <a href="https://lin.ee/ZdAU8Er" target="_blank" class="lb">💚 LINE Official</a>
     </div>
   </div>
 
-  <!-- CONTAINER สินค้า -->
-  <div id="shop-container"></div>
+  <!-- DYNAMIC PRODUCTS CONTAINER -->
+  <div id="products-wrapper"></div>
 
-  <!-- CART & CHECKOUT -->
-  <div class="sec" id="sec-cart" style="margin-top:40px;">🛒 ตะกร้าสินค้าและการชำระเงิน</div>
-  <div class="card full" style="margin-bottom:22px;">
+  <!-- CART & CHECKOUT CONTAINER -->
+  <div class="sec fi">🛒 ตะกร้าสินค้าและการชำระเงิน</div>
+  <div class="card full fi" style="margin-bottom:22px; height:auto;">
     <div class="ct"></div>
-    <div class="cttl">📦 รายการที่คุณเลือก</div>
-    <div id="cart-items-list" class="cb" style="margin-bottom:14px;">ยังไม่มีสินค้าในตะกร้า (กดปุ่ม ➕ เพื่อเลือกบริการ)</div>
+    <div class="cttl">📦 รายการสินค้าที่คุณเลือก</div>
+    <div id="cart-items-list" class="cb" style="margin-bottom:14px;">ยังไม่มีสินค้าในตะกร้า (กรุณากดเลือกบริการด้านบน)</div>
     
     <div style="margin-bottom:14px;">
       <label style="font-size:13px; color:#e8f4ff; cursor:pointer;">
@@ -120,23 +201,23 @@ body{margin:0;padding:0;background:#050d1a;background-color:#050d1a;color:#c8def
     </div>
 
     <div style="font-size:16px; font-weight:600; color:#fff; margin-bottom:18px;">
-      ยอดรวมทั้งสิ้น: <span id="cart-total-price" style="color:#00d4ff;">0</span> บาท
+      ยอดรวมทั้งสิ้น: <span id="cart-total-price" style="color:#00d4ff; font-size:20px;">0</span> บาท
     </div>
 
     <div id="checkout-form-area" style="display:none; border-top:1px solid rgba(30,111,255,0.2); padding-top:18px; margin-top:14px;">
-      <h4 style="color:#00d4ff; margin-top:0; margin-bottom:12px;">💳 โอนเงิน & กรอกข้อมูล</h4>
+      <h4 style="color:#00d4ff; margin-top:0; margin-bottom:12px;">💳 ช่องทางชำระเงิน & กรอกข้อมูล</h4>
       
       <!-- BANK INFO -->
       <div style="background:rgba(5,13,26,0.6); border:1px solid rgba(30,111,255,0.4); border-radius:12px; padding:16px; text-align:center; margin-bottom:16px;">
         <div style="font-size:12px; color:#6a8fca;">ธนาคารกสิกรไทย (KBank)</div>
         <div style="font-size:15px; font-weight:600; color:#e8f4ff; margin:2px 0;">ธนพร เจิมเฟื่องฟู</div>
-        <div style="font-size:24px; margin:8px 0; font-weight:600; color:#00d4ff; letter-spacing:2px;">1961933834</div>
+        <span class="bnum" style="font-size:24px; margin:8px 0;" id="kbank-num">1961933834</span>
         <button class="cpbtn" onclick="copyText('1961933834')">📋 คัดลอกเลขบัญชี</button>
       </div>
 
       <div style="background:rgba(5,13,26,0.6); border:1px solid rgba(30,111,255,0.4); border-radius:12px; padding:16px; text-align:center; margin-bottom:16px;">
         <div style="font-size:12px; color:#f59e0b;">TrueMoney Wallet</div>
-        <div style="font-size:24px; margin:8px 0; font-weight:600; color:#f59e0b; letter-spacing:2px;">0800172584</div>
+        <span class="bnum" style="font-size:24px; margin:8px 0; color:#f59e0b;" id="wallet-num">0800172584</span>
         <button class="cpbtn" style="background:linear-gradient(135deg,#d97706,#f59e0b);" onclick="copyText('0800172584')">📋 คัดลอก Wallet</button>
       </div>
 
@@ -147,46 +228,118 @@ body{margin:0;padding:0;background:#050d1a;background-color:#050d1a;color:#c8def
         </label>
       </div>
 
-      <!-- DYNAMIC FORM AREA -->
-      <div id="dynamic-form-area"></div>
+      <div style="border-top:1px dashed rgba(30,111,255,0.3); margin:20px 0;"></div>
+
+      <!-- CUSTOMER FORM FIELDS (DYNAMIC) -->
+      <div class="form-group">
+        <label>ชื่อเล่น / แอคเคาท์ติดต่อ *</label>
+        <input type="text" id="f-name" class="form-control" placeholder="เช่น น้องฟ้า / IG: fah_sky">
+      </div>
+
+      <!-- DYNAMIC QUESTIONS FOR MU-SPACE -->
+      <div id="dynamic-questions"></div>
+
+      <!-- WEBSITE ONLY FIELDS -->
+      <div class="form-group" id="fg-web-brief" style="display:none;">
+        <label>บรีฟรายละเอียดเว็บไซต์ / ฟังก์ชันที่ต้องการ *</label>
+        <textarea id="f-web-brief" class="form-control" rows="4" placeholder="อธิบายรูปแบบเว็บที่คุณต้องการ..."></textarea>
+      </div>
+      <div class="form-group" id="fg-web-color" style="display:none;">
+        <label>โทนสี / สไตล์ที่ชอบ *</label>
+        <input type="text" id="f-web-color" class="form-control" placeholder="เช่น โทนสีมินิมอล, ดาร์กโทน, สีชมพูพาสเทล">
+      </div>
+
+      <!-- MU-SPACE ONLY FIELDS -->
+      <div class="form-group" id="fg-mu-status">
+        <label>สถานะความสัมพันธ์ *</label>
+        <select id="f-status" class="form-control">
+          <option value="">-- เลือกสถานะ --</option>
+          <option value="โสด">โสด</option>
+          <option value="มีแฟนแล้ว">มีแฟนแล้ว</option>
+          <option value="คุยอยู่ / กำลังศึกษาดูใจ">คุยอยู่ / กำลังศึกษาดูใจ</option>
+          <option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
+        </select>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;" id="fg-mu-age-day">
+        <div class="form-group">
+          <label>อายุ *</label>
+          <input type="number" id="f-age" class="form-control" placeholder="เช่น 22">
+        </div>
+        <div class="form-group">
+          <label>เกิดวัน *</label>
+          <select id="f-day" class="form-control">
+            <option value="">-- เลือกวัน --</option>
+            <option value="วันจันทร์">วันจันทร์</option>
+            <option value="วันอังคาร">วันอังคาร</option>
+            <option value="วันพุธ">วันพุธ</option>
+            <option value="วันพฤหัสบดี">วันพฤหัสบดี</option>
+            <option value="วันศุกร์">วันศุกร์</option>
+            <option value="วันเสาร์">วันเสาร์</option>
+            <option value="วันอาทิตย์">วันอาทิตย์</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;" id="fg-mu-date-time">
+        <div class="form-group">
+          <label>วันที่จองคิว *</label>
+          <input type="date" id="f-date" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>เวลาที่จอง *</label>
+          <input type="time" id="f-time" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group" id="fg-type">
+        <label>รูปแบบคำทำนาย / การรับบริการ *</label>
+        <select id="f-type" class="form-control">
+          <option value="พิมพ์">พิมพ์ (Text-only)</option>
+          <option value="โทร">โทร / เสียง</option>
+        </select>
+      </div>
 
       <button class="btn-action" onclick="generateSummaryAndSend()">✨ สร้างข้อความสรุป & ส่งข้อมูล</button>
     </div>
   </div>
 
-  <!-- SUMMARY AREA -->
-  <div id="summary-area" class="card full" style="display:none; margin-bottom:22px;">
+  <!-- SUMMARY & LINE OUTPUT -->
+  <div id="summary-area" class="card full fi" style="display:none; margin-bottom:22px; height:auto;">
     <div class="ct"></div>
-    <div class="cttl">🎉 สรุปข้อความสำหรับส่งให้แอดมิน</div>
-    <div class="cb" style="margin-bottom:12px;">คัดลอกข้อความนี้ แล้วกดปุ่มเปิด LINE ส่งให้แอดมินพร้อมแนบสลิปได้เลยค่ะ</div>
+    <div class="cttl">🎉 สรุปข้อความสำหรับส่งให้แอดมินทาง LINE</div>
+    <div class="cb" style="margin-bottom:12px;">คัดลอกข้อความด้านล่างนี้ แล้วกดปุ่มเปิด LINE เพื่อส่งให้แอดมินพร้อมแนบสลิปได้เลยค่ะ</div>
     <div class="form-group">
-      <textarea id="summary-text" class="form-control" rows="8" readonly style="font-size:12px; background:#050d1a; color:#c8deff;"></textarea>
+      <textarea id="summary-text" class="form-control" rows="10" readonly style="font-size:12px; background:#020610; color:#c8deff; cursor:text;"></textarea>
     </div>
     <button class="cpbtn" style="width:100%; justify-content:center; margin-bottom:10px;" onclick="copySummaryText()">📋 คัดลอกข้อความสรุป</button>
-    <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="background:#00c355; text-decoration:none; text-align:center; display:block;" onclick="clearCart()">💚 เปิดแอป LINE (ส่งข้อมูล + สลิป)</a>
+    <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="background:#00c355; text-decoration:none; text-align:center; display:block;">💚 เปิดแอป LINE (ส่งข้อมูล + สลิป)</a>
   </div>
 
-  <div class="sec" style="justify-content:center; margin-top:30px;">
-    <a href="https://lin.ee/ZdAU8Er" target="_blank" class="lb" style="background:rgba(0,195,55,.1);border:1px solid rgba(0,195,55,.4);color:#4ade80;">💚 ติดต่อสอบถามทาง LINE Official</a>
+  <!-- CONTACTS -->
+  <div class="sec fi">📱 ช่องทางติดต่อ</div>
+  <div class="cons fi" style="display:flex; justify-content:center; flex-wrap:wrap; margin-top:12px;">
+    <a href="https://lin.ee/ZdAU8Er" target="_blank" class="lb">💚 LINE Official</a>
   </div>
-  <p style="text-align:center;font-size:12px;color:#3a5a8a;margin-top:20px;opacity:.7">© AhTao Mu-Space · บริการด้วยใจจริง ✨</p>
+  <p style="text-align:center;font-size:12px;color:#3a5a8a;margin-top:30px;opacity:.7">© AhTao Mu-Space · ตอบกลับรวดเร็ว บริการด้วยใจจริง ✨</p>
 
 </div>
 
 <!-- ADMIN MODAL -->
-<div id="adminModal" class="modal">
-  <div class="modal-content">
-    <h3 style="margin-top:0; color:#c4b5fd;">⚙️ ระบบจัดการร้านค้า</h3>
-    <div class="form-group">
-      <label>เลือกหมวดหมู่ที่ต้องการแก้ไข:</label>
-      <select id="admin-cat-select" class="form-control" onchange="renderAdminItems()"></select>
+<div id="admin-modal">
+  <div class="admin-box">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(30,111,255,0.3); padding-bottom:16px; margin-bottom:20px;">
+      <h2 style="color:#00d4ff; margin:0;">⚙️ จัดการรายการสินค้า</h2>
+      <button onclick="closeAdmin()" style="background:none; border:none; color:#fff; font-size:24px; cursor:pointer;">&times;</button>
     </div>
-    <div id="admin-items-list" style="margin-bottom:15px; border:1px solid rgba(255,255,255,0.1); padding:10px; border-radius:10px; background:#000;"></div>
-    <button class="btn-action" style="background:#4b5563; margin-top:0;" onclick="addAdminItem()">+ เพิ่มสินค้าใหม่ในหมวดนี้</button>
     
-    <div style="display:flex; gap:10px; margin-top:20px;">
-      <button class="btn-action" style="background:#ef4444;" onclick="document.getElementById('adminModal').style.display='none'">ยกเลิก</button>
-      <button class="btn-action" style="background:#10b981;" onclick="saveAdminData()">💾 บันทึกการเปลี่ยนแปลง</button>
+    <div id="admin-content" style="max-height:60vh; overflow-y:auto; padding-right:10px; margin-bottom:20px;">
+      <!-- Dynamic Admin Content -->
+    </div>
+
+    <div style="display:flex; gap:12px; border-top:1px solid rgba(30,111,255,0.3); padding-top:20px;">
+      <button onclick="saveAdmin()" class="btn-action" style="margin-top:0; flex:2;">💾 บันทึกการเปลี่ยนแปลง</button>
+      <button onclick="resetAdmin()" class="btn-action" style="margin-top:0; flex:1; background:linear-gradient(135deg,#b91c1c,#ef4444);">⚠️ รีเซ็ตค่าเริ่มต้น</button>
     </div>
   </div>
 </div>
@@ -194,229 +347,267 @@ body{margin:0;padding:0;background:#050d1a;background-color:#050d1a;color:#c8def
 <div class="toast" id="toast">✅ ดำเนินการสำเร็จ!</div>
 
 <script>
-// --- BACKGROUND PARTICLES ---
-(function(){
-  var pc=document.getElementById('pts');
-  var cs=['#1e6fff','#00d4ff','#a78bfa','#60a5fa','#00c8ff'];
-  for(var i=0;i<28;i++){
-    var el=document.createElement('div'); el.className='p';
-    var s=Math.random()*4+2;
+// Default Data Structure
+const defaultData = [
+  {
+    sectionTitle: "🔮 1. ดูดวง (ดูดวงแบบพิมพ์แชท และ เฉพาะทาง)",
+    category: "ดูดวง",
+    cards: [
+      {
+        icon: "💬", title: "ดูดวงทั่วไป (แชท)",
+        items: [
+          { name: "Yes or No!! (1 คำถาม)", price: 9 },
+          { name: "1 คำถาม", price: 29 },
+          { name: "3 คำถาม", price: 69 },
+          { name: "5 คำถาม (ขายดี)", price: 118 },
+          { name: "เซ็ทแม่หมอ (เจาะลึกความรัก)", price: 129 },
+          { name: "ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)", price: 49 },
+          { name: "เช็กล้วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)", price: 59 }
+        ]
+      },
+      {
+        icon: "✨", title: "ดูดวงเฉพาะทาง (เรื่องรอบตัว & สิ่งศักดิ์สิทธิ์)",
+        items: [
+          { name: "คนรอบตัวมองว่าเราเป็นคนยังไง", price: 49 },
+          { name: "ดูสีและอัญมณีเสริมดวงประจำตัว", price: 69 },
+          { name: "ดูเลขมงคลและทิศมงคลเสริมดวง", price: 69 },
+          { name: "เลขบัตรประชาชนส่งผลอย่างไร", price: 89 },
+          { name: "ดูฤกษ์มงคล", price: 99 },
+          { name: "บ้านเลขที่นี้อยู่แล้วเป็นอย่างไร", price: 59 },
+          { name: "สิ่งศักดิ์สิทธิ์ที่เรานับถืออยากบอกอะไร", price: 159 },
+          { name: "คำถามเกี่ยวกับสิ่งศักดิ์สิทธิ์สิ่งลี้ลับ", price: 259 }
+        ]
+      },
+      {
+        icon: "❤️", title: "ดูดวงเฉพาะทาง (ไพ่เตือนใจ & ความรัก)",
+        items: [
+          { name: "ไพ่อยากบอกหรือให้คำแนะนำอะไร", price: 69 },
+          { name: "ไพ่อยากเตือนเรื่องที่ต้องระวัง", price: 79 },
+          { name: "สัตว์เลี้ยงอยากบอกอะไรถึงคุณ", price: 79 },
+          { name: "ทำนายฝันและแปลเลขจากฝัน", price: 79 },
+          { name: "ลักษณะแฟนในอนาคต", price: 89 },
+          { name: "เนื้อคู่ (รับอายุ 20+ ขึ้นไป)", price: 199 }
+        ]
+      },
+      {
+        icon: "🔮", title: "ดูดวงเฉพาะทาง (ภาพรวม & อนาคต)",
+        items: [
+          { name: "สิ่งที่ควรระวังในเดือนนี้", price: 99 },
+          { name: "สุขภาพในเดือนนี้", price: 99 },
+          { name: "ดวงเราภายใน 3 เดือนถัดจากนี้", price: 199 },
+          { name: "ดวงชะตารายสัปดาห์อย่างละเอียด", price: 99 },
+          { name: "ภาพรวมรายเดือน", price: 199 },
+          { name: "ดวงชะตารายเดือนอย่างละเอียด", price: 299 },
+          { name: "ดวงชะตาราย 6 เดือน", price: 499 },
+          { name: "ดวงชะตารายปีอย่างละเอียด", price: 799 }
+        ]
+      }
+    ]
+  },
+  {
+    sectionTitle: "📞 2. โทรดูดวง",
+    category: "โทรดูดวง",
+    cards: [
+      {
+        icon: "📞", title: "โทรดูดวง (พูดคุยสายตรง)",
+        items: [
+          { name: "โทรไม่จำกัดคำถาม - 10 นาที", price: 99 },
+          { name: "โทรไม่จำกัดคำถาม - 15 นาที", price: 129 },
+          { name: "โทรไม่จำกัดคำถาม - 30 นาที", price: 189 },
+          { name: "โทรไม่จำกัดคำถาม - 1 ชั่วโมง", price: 299 },
+          { name: "ต่อเวลาโทร (บวกเพิ่มต่อ 10 นาที)", price: 50 }
+        ]
+      }
+    ]
+  },
+  {
+    sectionTitle: "🎧 3. พื้นที่รับฟัง (ฮีลใจ)",
+    category: "พื้นที่รับฟัง",
+    cards: [
+      {
+        icon: "☎️", title: "พื้นที่รับฟัง (สายคอล)", note: "*ไม่มีบริการแบบพิมพ์แชทในหมวดนี้*",
+        items: [
+          { name: "ทดลอง/ลูกค้าใหม่ 10 นาที", price: 59 },
+          { name: "30 นาที", price: 139 },
+          { name: "60 นาที", price: 239 },
+          { name: "90 นาที", price: 329 },
+          { name: "แพ็ก 3 ครั้ง (ครั้งละ 60 นาที)", price: 659 }
+        ]
+      }
+    ]
+  },
+  {
+    sectionTitle: "🖼️ 4. วอลเปเปอร์เสริมดวง",
+    category: "วอลเปเปอร์",
+    cards: [
+      {
+        icon: "📱", title: "วอลเปเปอร์สายมู",
+        items: [
+          { name: "วอลเปเปอร์สายมูออกแบบเริ่มต้น", price: 189 },
+          { name: "วอลเปเปอร์สายมูให้แม่หมอดูเสริมทิศทางให้", price: 199 },
+          { name: "วอลเปเปอร์สายมูเพิ่มเรื่อง (บวกเพิ่มต่อเรื่อง)", price: 39 }
+        ]
+      }
+    ]
+  },
+  {
+    sectionTitle: "💻 5. รับทำเว็บไซต์",
+    category: "รับทำเว็บไซต์",
+    cards: [
+      {
+        icon: "🖥️", title: "บริการรับทำเว็บไซต์",
+        items: [
+          { name: "ไม่เกิน 200 lines", price: 129 },
+          { name: "เกิน 200 lines", price: 139 },
+          { name: "เกิน 400 lines", price: 189 },
+          { name: "เกิน 600 lines", price: 249 },
+          { name: "แบนเนอร์ 1-2 รูป", price: 29 }
+        ]
+      }
+    ]
+  }
+];
+
+let productData = [];
+let currentCart = [];
+let totalDynamicQuestions = 0;
+let hasWebsite = false;
+let hasMu = false;
+
+// Initialize System
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('muSpaceProducts');
+  if (saved) {
+    try { productData = JSON.parse(saved); } 
+    catch(e) { productData = JSON.parse(JSON.stringify(defaultData)); }
+  } else {
+    productData = JSON.parse(JSON.stringify(defaultData));
+  }
+  
+  const today = new Date().toISOString().split('T')[0];
+  const dateInput = document.getElementById('f-date');
+  if (dateInput) dateInput.value = today;
+
+  renderProducts();
+  
+  // Particles generator
+  const pc=document.getElementById('pts');
+  const cs=['#1e6fff','#00d4ff','#a78bfa','#60a5fa','#00c8ff'];
+  for(let i=0;i<28;i++){
+    const el=document.createElement('div');
+    el.className='p';
+    const s=Math.random()*4+2;
     el.style.cssText=`width:${s}px;height:${s}px;background:${cs[i%cs.length]};left:${Math.random()*100}%;animation-duration:${9+Math.random()*12}s;animation-delay:${Math.random()*12}s;box-shadow:0 0 ${s*3}px currentColor;`;
     pc.appendChild(el);
   }
-})();
+});
 
-// --- DATABASE & BALANCED SHOP DATA ---
-const defaultData = {
-  "1. ดูดวง": {
-    icon: "🔮", 
-    desc: "ดูดวงแบบพิมพ์แชท และเฉพาะทาง เจาะลึกตรงประเด็น",
-    subCats: {
-      "ดูดวงทั่วไป (แชท)": [
-        {name: "Yes or No!! (1 คำถาม)", price: 9},
-        {name: "1 คำถาม", price: 29},
-        {name: "3 คำถาม", price: 69},
-        {name: "5 คำถาม (ขายดี)", price: 118},
-        {name: "เซ็ทแม่หมอ (เจาะลึกความรัก)", price: 129},
-        {name: "ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)", price: 49},
-        {name: "เช็กล้วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)", price: 59}
-      ],
-      "ดูดวงเฉพาะทาง (ยอดฮิต)": [
-        {name: "คนรอบตัวมองว่าเราเป็นคนยังไง", price: 49},
-        {name: "ดูสีและอัญมณีเสริมดวงประจำตัว", price: 69},
-        {name: "ดูเลขมงคลและทิศมงคลเสริมดวง", price: 69},
-        {name: "เลขบัตรประชาชนส่งผลอย่างไร", price: 89},
-        {name: "ดูฤกษ์มงคล", price: 99},
-        {name: "ไพ่อยากบอกหรือให้คำแนะนำอะไร", price: 69},
-        {name: "ไพ่อยากเตือนเรื่องที่ต้องระวัง", price: 79},
-        {name: "สัตว์เลี้ยงอยากบอกอะไรถึงคุณ", price: 79},
-        {name: "ทำนายฝันและแปลเลขจากฝัน", price: 79}
-      ],
-      "ดูดวงเฉพาะทาง (เจาะลึก)": [
-        {name: "ลักษณะแฟนในอนาคต", price: 89},
-        {name: "สิ่งที่ควรระวังในเดือนนี้", price: 99},
-        {name: "สุขภาพในเดือนนี้", price: 99},
-        {name: "บ้านเลขที่นี้อยู่แล้วเป็นอย่างไร", price: 59},
-        {name: "เนื้อคู่ (รับอายุ 20+ ขึ้นไป)", price: 199},
-        {name: "ดวงเราภายใน 3 เดือนถัดจากนี้", price: 199},
-        {name: "สิ่งศักดิ์สิทธิ์ที่เรานับถืออยากบอกอะไร", price: 159},
-        {name: "คำถามเกี่ยวกับสิ่งศักดิ์สิทธิ์สิ่งลี้ลับ", price: 259}
-      ],
-      "ดูดวงเฉพาะทาง (ระยะยาว)": [
-        {name: "ดวงชะตารายสัปดาห์อย่างละเอียด", price: 99},
-        {name: "ภาพรวมรายเดือน", price: 199},
-        {name: "ดวงชะตารายเดือนอย่างละเอียด", price: 299},
-        {name: "ดวงชะตาราย 6 เดือน", price: 499},
-        {name: "ดวงชะตารายปีอย่างละเอียด", price: 799}
-      ]
-    }
-  },
-  "2. โทรดูดวง": {
-    icon: "📞", desc: "โทรคุยสายตรงแบบไม่จำกัดคำถาม",
-    subCats: {
-      "โทรดูดวง (พูดคุยสายตรง)": [
-        {name: "โทรไม่จำกัดคำถาม - 10 นาที", price: 99},
-        {name: "โทรไม่จำกัดคำถาม - 15 นาที", price: 129},
-        {name: "โทรไม่จำกัดคำถาม - 30 นาที", price: 189},
-        {name: "โทรไม่จำกัดคำถาม - 1 ชั่วโมง", price: 299},
-        {name: "ต่อเวลาโทร (บวกเพิ่มต่อ 10 นาที)", price: 50}
-      ]
-    }
-  },
-  "3. พื้นที่รับฟัง (ฮีลใจ)": {
-    icon: "🎧", desc: "พื้นที่ปลอดภัย รับฟังทุกปัญหาผ่านสายคอล",
-    subCats: {
-      "พื้นที่รับฟัง (สายคอล)": [
-        {name: "ทดลอง/ลูกค้าใหม่ 10 นาที", price: 59},
-        {name: "30 นาที", price: 139},
-        {name: "60 นาที", price: 239},
-        {name: "90 นาที", price: 329},
-        {name: "แพ็ก 3 ครั้ง (ครั้งละ 60 นาที)", price: 659}
-      ]
-    }
-  },
-  "4. วอลเปเปอร์เสริมดวง": {
-    icon: "🖼️", desc: "ออกแบบวอลเปเปอร์มูเตลูเฉพาะคุณ",
-    subCats: {
-      "วอลเปเปอร์สายมู": [
-        {name: "วอลเปเปอร์สายมูออกแบบเริ่มต้น", price: 189},
-        {name: "วอลเปเปอร์สายมูให้แม่หมอดูเสริมทิศทางให้", price: 199},
-        {name: "วอลเปเปอร์สายมูเพิ่มเรื่อง (บวกเพิ่มต่อเรื่อง)", price: 39}
-      ]
-    }
-  },
-  "5. รับทำเว็บไซต์": {
-    icon: "💻", desc: "บริการออกแบบเว็บไซต์พร้อมระบบหลังบ้าน",
-    subCats: {
-      "บริการรับทำเว็บไซต์": [
-        {name: "ไม่เกิน 200 lines", price: 129},
-        {name: "เกิน 200 lines", price: 139},
-        {name: "เกิน 400 lines", price: 189},
-        {name: "เกิน 600 lines", price: 249},
-        {name: "แบนเนอร์ 1-2 รูป", price: 29}
-      ]
-    }
-  }
-};
-
-let shopData = JSON.parse(localStorage.getItem('AhTaoShopDB'));
-if (!shopData) {
-  shopData = defaultData;
-  localStorage.setItem('AhTaoShopDB', JSON.stringify(shopData));
-}
-
-// --- RENDER SHOP BALANCED GRID ---
-function renderShop() {
+// Render Products to HTML
+function renderProducts() {
+  const container = document.getElementById('products-wrapper');
   let html = '';
-  const sections = {
-    "1. ดูดวง": "sec-duduang",
-    "2. โทรดูดวง": "sec-call",
-    "3. พื้นที่รับฟัง (ฮีลใจ)": "sec-heal",
-    "4. วอลเปเปอร์เสริมดวง": "sec-wall",
-    "5. รับทำเว็บไซต์": "sec-web"
-  };
-
-  for (let mainCat in shopData) {
-    let m = shopData[mainCat];
-    html += `<div class="sec" id="${sections[mainCat]}">${mainCat}</div>`;
-    html += `<div class="grid">`;
-    
-    for (let subCat in m.subCats) {
-      let items = m.subCats[subCat];
-      html += `
-        <div class="card ${items.length > 5 ? 'full' : ''}">
-          <div class="ct"></div>
-          <span class="ci">${m.icon}</span>
-          <div class="cttl">${subCat}</div>
-          <div class="cb">
-      `;
-      items.forEach(item => {
-        html += `
-          <div class="row">
-            <span>${item.name}</span>
-            <div style="display:flex; align-items:center;">
-              <span class="pt">${item.price}.-</span>
-              <button class="add-btn" onclick="addToCart('${item.name}', ${item.price}, '${mainCat}')">➕</button>
-            </div>
+  
+  productData.forEach((sec) => {
+    html += `<div class="sec fi">${sec.sectionTitle}</div><div class="grid fi">`;
+    sec.cards.forEach((card) => {
+      const isFull = (sec.cards.length === 1) ? 'full' : '';
+      html += `<div class="card ${isFull}">
+        <div class="ct"></div>
+        <span class="ci">${card.icon}</span>
+        <div class="cttl">${card.title}</div>`;
+      
+      if(card.note) html += `<div class="cb" style="margin-bottom:12px;">${card.note}</div>`;
+      
+      card.items.forEach((item) => {
+        const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        html += `<div class="row">
+          <span class="item-name">${item.name}</span>
+          <div style="display:flex; align-items:center;">
+            <span class="pt">${item.price}.-</span>
+            <button class="btn-add" onclick="addToCart('${safeName}', ${item.price}, '${sec.category}')">➕</button>
           </div>
-        `;
+        </div>`;
       });
-      html += `</div></div>`;
-    }
+      html += `</div>`;
+    });
     html += `</div>`;
-  }
-  document.getElementById('shop-container').innerHTML = html;
+  });
+  
+  container.innerHTML = html;
 }
-renderShop();
 
-// --- ADMIN SYSTEM ---
+// Admin Panel Logic
 function openAdmin() {
-  const sel = document.getElementById('admin-cat-select');
-  sel.innerHTML = '';
-  for (let mainCat in shopData) {
-    for (let subCat in shopData[mainCat].subCats) {
-      sel.innerHTML += `<option value="${mainCat}|${subCat}">${mainCat} > ${subCat}</option>`;
-    }
-  }
-  renderAdminItems();
-  document.getElementById('adminModal').style.display = 'block';
+  renderAdminPanel();
+  document.getElementById('admin-modal').style.display = 'block';
 }
-
-function renderAdminItems() {
-  const val = document.getElementById('admin-cat-select').value.split('|');
-  const items = shopData[val[0]].subCats[val[1]];
+function closeAdmin() {
+  document.getElementById('admin-modal').style.display = 'none';
+}
+function updateDataFromDOM() {
+  productData.forEach((sec, sIdx) => {
+    sec.cards.forEach((card, cIdx) => {
+      card.items.forEach((item, iIdx) => {
+        const n = document.getElementById(`name-${sIdx}-${cIdx}-${iIdx}`);
+        const p = document.getElementById(`price-${sIdx}-${cIdx}-${iIdx}`);
+        if(n) item.name = n.value;
+        if(p) item.price = parseInt(p.value) || 0;
+      });
+    });
+  });
+}
+function renderAdminPanel() {
   let html = '';
-  items.forEach((item) => {
-    html += `
-      <div class="adm-row">
-        <input class="adm-input inp-name" value="${item.name}" placeholder="ชื่อบริการ">
-        <input class="adm-input inp-price" type="number" value="${item.price}" placeholder="ราคา" style="max-width:80px;">
-        <button class="adm-del" onclick="removeAdminItem(this)">🗑️</button>
-      </div>
-    `;
+  productData.forEach((sec, sIdx) => {
+    html += `<h3 style="color:#e8f4ff; border-left:4px solid #1e6fff; padding-left:10px; margin-top:20px;">${sec.sectionTitle}</h3>`;
+    sec.cards.forEach((card, cIdx) => {
+      html += `<div style="background:rgba(255,255,255,0.05); padding:14px; margin-bottom:12px; border-radius:12px; border:1px solid rgba(30,111,255,0.2);">`;
+      html += `<h4 style="margin:0 0 10px 0; color:#90c8ff;">${card.icon} ${card.title}</h4>`;
+      card.items.forEach((item, iIdx) => {
+        html += `<div style="display:flex; gap:8px; margin-bottom:8px;">
+          <input type="text" class="form-control" value="${item.name.replace(/"/g, '&quot;')}" id="name-${sIdx}-${cIdx}-${iIdx}" style="flex:2; padding:8px 12px;">
+          <input type="number" class="form-control" value="${item.price}" id="price-${sIdx}-${cIdx}-${iIdx}" style="flex:1; padding:8px 12px;">
+          <button onclick="deleteItem(${sIdx}, ${cIdx}, ${iIdx})" style="background:#ef4444; border:none; border-radius:8px; color:#fff; cursor:pointer; padding:0 14px; transition:all .2s;" title="ลบรายการ">🗑️</button>
+        </div>`;
+      });
+      html += `<button onclick="addItem(${sIdx}, ${cIdx})" style="background:rgba(30,111,255,0.2); border:1px dashed #1e6fff; border-radius:8px; color:#fff; cursor:pointer; padding:8px 14px; font-size:13px; font-family:'Mitr'; width:100%; margin-top:8px; transition:all .2s;">+ เพิ่มรายการสินค้าใหม่</button>`;
+      html += `</div>`;
+    });
   });
-  document.getElementById('admin-items-list').innerHTML = html;
+  document.getElementById('admin-content').innerHTML = html;
+}
+function addItem(sIdx, cIdx) {
+  updateDataFromDOM();
+  productData[sIdx].cards[cIdx].items.push({name: "ชื่อบริการใหม่", price: 0});
+  renderAdminPanel();
+}
+function deleteItem(sIdx, cIdx, iIdx) {
+  if(!confirm("แน่ใจหรือไม่ว่าต้องการลบสินค้านี้?")) return;
+  updateDataFromDOM();
+  productData[sIdx].cards[cIdx].items.splice(iIdx, 1);
+  renderAdminPanel();
+}
+function saveAdmin() {
+  updateDataFromDOM();
+  localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
+  closeAdmin();
+  renderProducts();
+  showToast('✅ บันทึกข้อมูลร้านค้าสำเร็จ!');
+}
+function resetAdmin() {
+  if(confirm("คำเตือน: การรีเซ็ตจะทำให้ข้อมูลที่คุณแก้ไขหายไปทั้งหมด และกลับไปเป็นค่าเริ่มต้นของระบบ ยืนยันหรือไม่?")) {
+    localStorage.removeItem('muSpaceProducts');
+    location.reload();
+  }
 }
 
-function addAdminItem() {
-  document.getElementById('admin-items-list').insertAdjacentHTML('beforeend', `
-    <div class="adm-row">
-      <input class="adm-input inp-name" placeholder="ชื่อบริการ">
-      <input class="adm-input inp-price" type="number" placeholder="ราคา" style="max-width:80px;">
-      <button class="adm-del" onclick="removeAdminItem(this)">🗑️</button>
-    </div>
-  `);
-}
-
-function removeAdminItem(btn) {
-  btn.parentElement.remove();
-}
-
-function saveAdminData() {
-  const val = document.getElementById('admin-cat-select').value.split('|');
-  const rows = document.getElementById('admin-items-list').querySelectorAll('.adm-row');
-  let newItems = [];
-  rows.forEach(row => {
-    let n = row.querySelector('.inp-name').value.trim();
-    let p = parseInt(row.querySelector('.inp-price').value);
-    if(n && !isNaN(p)) newItems.push({name: n, price: p});
-  });
-  shopData[val[0]].subCats[val[1]] = newItems;
-  localStorage.setItem('AhTaoShopDB', JSON.stringify(shopData));
-  showToast('💾 บันทึกสำเร็จ!');
-  renderShop();
-  document.getElementById('adminModal').style.display = 'none';
-}
-
-// --- CART & DYNAMIC FORM ---
-let currentCart = [];
-
+// Cart & Dynamic Form Logic
 function addToCart(name, price, category) {
   currentCart.push({ name, price, category });
   updateCartTotal();
   showToast('🛒 เพิ่มสินค้าลงตะกร้าแล้ว!');
   document.getElementById('checkout-form-area').style.display = 'block';
-  generateDynamicForm();
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
 
 function updateCartTotal() {
@@ -428,14 +619,35 @@ function updateCartTotal() {
     listEl.innerHTML = 'ยังไม่มีสินค้าในตะกร้า';
     totalEl.textContent = '0';
     document.getElementById('checkout-form-area').style.display = 'none';
+    document.getElementById('summary-area').style.display = 'none';
     return;
   }
 
   let html = '';
   let subtotal = 0;
+  totalDynamicQuestions = 0;
+  hasWebsite = false;
+  hasMu = false;
+
   currentCart.forEach((item, index) => {
     subtotal += item.price;
-    html += `<div style="display:flex; justify-content:space-between; margin-bottom:4px; border-bottom:1px solid rgba(30,111,255,0.1); padding-bottom:4px;"><span>- ${item.name}</span> <span>${item.price}.- <button onclick="removeItem(${index})" style="background:none; border:none; color:#ff6b6b; cursor:pointer; font-family:'Mitr';">[ลบ]</button></span></div>`;
+    html += `<div style="display:flex; justify-content:space-between; margin-bottom:4px; border-bottom:1px solid rgba(30,111,255,0.1); padding-bottom:4px;"><span>- ${item.name}</span> <span>${item.price}.- <button onclick="removeItem(${index})" style="background:none; border:none; color:#ff6b6b; cursor:pointer; font-family:'Mitr'; font-size:12px;">[ลบ]</button></span></div>`;
+    
+    if (item.category === 'รับทำเว็บไซต์') {
+      hasWebsite = true;
+    } else {
+      hasMu = true;
+    }
+
+    // Logic for generating questions
+    if(item.category === 'ดูดวง') {
+      const match = item.name.match(/(\d+)\s*คำถาม/);
+      if (match) {
+        totalDynamicQuestions += parseInt(match[1]);
+      } else if (item.name.toLowerCase().includes("yes or no") || item.name.includes("1 คำถาม")) {
+        totalDynamicQuestions += 1;
+      }
+    }
   });
 
   if (urgentCheckbox && urgentCheckbox.checked) {
@@ -445,7 +657,50 @@ function updateCartTotal() {
 
   listEl.innerHTML = html;
   totalEl.textContent = subtotal;
-  generateDynamicForm();
+
+  // Manage Dynamic Form Fields
+  setupDynamicForm(subtotal);
+}
+
+function setupDynamicForm(subtotal) {
+  // Questions Generator
+  const dQuestionsDiv = document.getElementById('dynamic-questions');
+  dQuestionsDiv.innerHTML = '';
+  
+  if (totalDynamicQuestions > 0) {
+    for(let i=1; i<=totalDynamicQuestions; i++) {
+      dQuestionsDiv.innerHTML += `
+      <div class="form-group">
+        <label>คำถามที่ ${i} *</label>
+        <textarea class="form-control dyn-q" rows="2" placeholder="พิมพ์คำถามที่ ${i} ของคุณ..."></textarea>
+      </div>`;
+    }
+  } else if (hasMu) {
+    dQuestionsDiv.innerHTML = `
+    <div class="form-group">
+      <label>รายละเอียดที่ต้องการสอบถามเพิ่มเติม (ถ้ามี)</label>
+      <textarea class="form-control dyn-q" rows="3" placeholder="ระบุรายละเอียด..."></textarea>
+    </div>`;
+  }
+
+  // Toggle Visibility
+  document.getElementById('fg-mu-status').style.display = hasMu ? 'block' : 'none';
+  document.getElementById('fg-mu-age-day').style.display = hasMu ? 'grid' : 'none';
+  document.getElementById('fg-mu-date-time').style.display = hasMu ? 'grid' : 'none';
+  document.getElementById('fg-type').style.display = hasMu ? 'block' : 'none';
+
+  document.getElementById('fg-web-brief').style.display = hasWebsite ? 'block' : 'none';
+  document.getElementById('fg-web-color').style.display = hasWebsite ? 'block' : 'none';
+
+  // Rule: Check price < 69 automatically lock type to "พิมพ์" (Checking pure subtotal without urgent)
+  const pureSubtotal = subtotal - (document.getElementById('urgent-queue').checked ? 59 : 0);
+  const typeSelect = document.getElementById('f-type');
+  if (typeSelect && pureSubtotal < 69) {
+    typeSelect.value = 'พิมพ์';
+    typeSelect.disabled = true;
+  } else if (typeSelect) {
+    typeSelect.disabled = false;
+  }
 }
 
 function removeItem(index) {
@@ -453,129 +708,83 @@ function removeItem(index) {
   updateCartTotal();
 }
 
-function generateDynamicForm() {
-  const formArea = document.getElementById('dynamic-form-area');
-  let hasWeb = currentCart.some(i => i.category === '5. รับทำเว็บไซต์');
-  let hasHoroscope = currentCart.some(i => i.category !== '5. รับทำเว็บไซต์');
-  
-  let html = `<div class="form-group"><label>ชื่อเล่น / ชื่อแอคเคาท์ติดต่อ *</label><input type="text" id="f-name" class="form-control" placeholder="เพื่อให้แอดมินเรียกถูกค่ะ"></div>`;
-
-  if (hasHoroscope) {
-    let qCount = 0;
-    currentCart.forEach(i => {
-      let m = i.name.match(/(\d+)\s*คำถาม/);
-      if(m) qCount += parseInt(m[1]);
-    });
-
-    if (qCount > 0) {
-      html += `<div style="border-left:2px solid #00d4ff; padding-left:10px; margin-bottom:15px;">`;
-      for(let j = 1; j <= qCount; j++) {
-        html += `<div class="form-group"><label>คำถามที่ ${j} *</label><textarea class="form-control dyn-q" rows="2" placeholder="ระบุคำถามให้ชัดเจน..."></textarea></div>`;
-      }
-      html += `</div>`;
-    } else {
-      html += `<div class="form-group"><label>คำถาม / สิ่งที่อยากปรึกษา *</label><textarea id="f-general-q" class="form-control dyn-q" rows="3" placeholder="ระบุรายละเอียดของคุณที่นี่..."></textarea></div>`;
-    }
-
-    html += `
-      <div class="form-group">
-        <label>สถานะความสัมพันธ์ *</label>
-        <select id="f-status" class="form-control">
-          <option value="">-- เลือกสถานะ --</option>
-          <option value="โสด">โสด</option><option value="มีแฟนแล้ว">มีแฟนแล้ว</option>
-          <option value="คุยอยู่ / กำลังศึกษาดูใจ">คุยอยู่ / กำลังศึกษาดูใจ</option><option value="อกหัก / เลิกรา">อกหัก / เลิกรา</option>
-        </select>
-      </div>
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        <div class="form-group"><label>อายุ *</label><input type="number" id="f-age" class="form-control"></div>
-        <div class="form-group">
-          <label>เกิดวัน *</label>
-          <select id="f-day" class="form-control">
-            <option value="">เลือก</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option>
-            <option value="พุธ">พุธ</option><option value="พฤหัส">พฤหัส</option><option value="ศุกร์">ศุกร์</option>
-            <option value="เสาร์">เสาร์</option><option value="อาทิตย์">อาทิตย์</option>
-          </select>
-        </div>
-      </div>
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        <div class="form-group"><label>วันที่ต้องการจอง *</label><input type="date" id="f-date" class="form-control" value="${new Date().toISOString().split('T')[0]}"></div>
-        <div class="form-group"><label>เวลาที่จอง *</label><input type="time" id="f-time" class="form-control"></div>
-      </div>
-    `;
-
-    let isLockedToText = currentCart.some(i => i.price < 69 && i.category === '1. ดูดวง');
-    html += `
-      <div class="form-group">
-        <label>รูปแบบคำทำนาย ${isLockedToText ? '<span style="color:#ff4757; font-size:11px;">(ล็อกเป็นแบบพิมพ์เพราะมีบริการ < 69฿)</span>' : ''}</label>
-        <select id="f-type" class="form-control" ${isLockedToText ? 'disabled' : ''}>
-          <option value="พิมพ์">พิมพ์ (Text-only)</option>
-          <option value="โทร">โทร / เสียง</option>
-        </select>
-      </div>
-    `;
-  }
-
-  if (hasWeb) {
-    html += `
-      <div style="background:rgba(0,212,255,0.05); border:1px dashed #00d4ff; border-radius:12px; padding:15px; margin-top:15px; margin-bottom:15px;">
-        <h4 style="color:#00d4ff; margin-top:0; margin-bottom:10px;">💻 บรีฟสำหรับงานเว็บไซต์</h4>
-        <div class="form-group"><label>รายละเอียดเว็บ / ธุรกิจของคุณ *</label><textarea id="f-web-detail" class="form-control" rows="3" placeholder="ระบุสิ่งที่อยากให้มีในเว็บ เช่น หน้าขายของ, จองคิว..."></textarea></div>
-        <div class="form-group"><label>โทนสี หรือ สไตล์ที่ชอบ *</label><input type="text" id="f-web-style" class="form-control" placeholder="เช่น สีดาร์ก, ชมพูพาสเทล หรือแปะลิงก์ตัวอย่าง"></div>
-      </div>
-    `;
-  }
-
-  formArea.innerHTML = html;
-}
-
 function copyText(textToCopy) {
-  navigator.clipboard.writeText(textToCopy).then(() => showToast('✅ คัดลอกเลขบัญชีสำเร็จ!'));
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(textToCopy).then(() => showToast('✅ คัดลอกสำเร็จ!'));
+  } else {
+    try {
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = textToCopy;
+      tempTextArea.style.position = "fixed";
+      document.body.appendChild(tempTextArea);
+      tempTextArea.focus();
+      tempTextArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempTextArea);
+      showToast('✅ คัดลอกสำเร็จ!');
+    } catch (err) {
+      console.error('Failed to copy', err);
+    }
+  }
 }
 
 function generateSummaryAndSend() {
   const confirmBox = document.getElementById('confirm-pay');
   if (!confirmBox.checked) {
-    alert('กรุณาติ๊กยืนยันการโอนเงินก่อนค่ะ');
+    alert('กรุณาติ๊กยืนยันการตรวจสอบชื่อบัญชีและโอนเงินเรียบร้อยแล้วก่อนไปต่อค่ะ');
     return;
   }
 
   const name = document.getElementById('f-name').value.trim();
-  if(!name) { alert('กรุณากรอกชื่อด้วยค่ะ'); return; }
+  if (!name) { alert('กรุณากรอกชื่อเล่น/แอคเคาท์ติดต่อค่ะ'); return; }
 
-  let hasWeb = currentCart.some(i => i.category === '5. รับทำเว็บไซต์');
-  let hasHoroscope = currentCart.some(i => i.category !== '5. รับทำเว็บไซต์');
+  let summary = `🧸 ขอบคุณสำหรับการจองบริการกับอาเต๋านะคะ \n‧┈┈┈┈┈┈‧ \n` +
+                `🛒 ออเดอร์จาก: ${name}\n` +
+                `📋 รายการที่สั่ง:\n${currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n')}`;
+  
+  if (document.getElementById('urgent-queue').checked) {
+    summary += `\n- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)`;
+  }
+  summary += `\n💰 ยอดรวมโอน: ${document.getElementById('cart-total-price').textContent} บาท\n` +
+             `✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\n`;
 
-  let itemsStr = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
-  let totalPrice = document.getElementById('cart-total-price').textContent;
-  let urgentAdded = document.getElementById('urgent-queue').checked ? '\n- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)' : '';
-
-  let summary = `🛒 ออเดอร์จาก: ${name}\n` +
-                `📋 รายการที่สั่ง:\n${itemsStr}${urgentAdded}\n` +
-                `💰 ยอดรวมโอน: ${totalPrice} บาท\n` +
-                `✅ โอนเงินเรียบร้อยแล้ว\n` +
-                `-----------------------------\n`;
-
-  if (hasHoroscope) {
-    summary += `🔮 ข้อมูลประกอบการบริการ:\n`;
-    const qInputs = document.querySelectorAll('.dyn-q');
-    qInputs.forEach((el, idx) => {
-      summary += `คำถาม ${qInputs.length > 1 ? idx+1 : ''}: ${el.value || '-'}\n`;
-    });
-    let status = document.getElementById('f-status').value;
-    let age = document.getElementById('f-age').value;
-    let day = document.getElementById('f-day').value;
-    let date = document.getElementById('f-date').value;
-    let time = document.getElementById('f-time').value;
-    let type = document.getElementById('f-type').value;
-    
-    summary += `สถานะ: ${status || '-'}\nอายุ: ${age || '-'} | เกิดวัน: ${day || '-'}\n`;
-    summary += `จองคิว: ${date || '-'} เวลา ${time || '-'} น.\nรูปแบบ: ${type}\n`;
+  // Validation & Append for Website
+  if (hasWebsite) {
+    const brief = document.getElementById('f-web-brief').value.trim();
+    const color = document.getElementById('f-web-color').value.trim();
+    if(!brief || !color) { alert('กรุณากรอกข้อมูลบรีฟเว็บไซต์และโทนสีให้ครบถ้วนค่ะ'); return; }
+    summary += `-----------------------------\n💻 ข้อมูลทำเว็บไซต์:\nบรีฟงาน: ${brief}\nโทนสี/สไตล์: ${color}\n`;
   }
 
-  if (hasWeb) {
-    let detail = document.getElementById('f-web-detail').value;
-    let style = document.getElementById('f-web-style').value;
-    summary += `\n💻 บรีฟทำเว็บไซต์:\nรายละเอียด: ${detail || '-'}\nโทนสี/สไตล์: ${style || '-'}\n`;
+  // Validation & Append for Mu-Space
+  if (hasMu) {
+    let allQsFilled = true;
+    const dynQs = document.querySelectorAll('.dyn-q');
+    let qText = '';
+    dynQs.forEach((q, idx) => {
+      const val = q.value.trim();
+      if(totalDynamicQuestions > 0 && !val) allQsFilled = false;
+      qText += (totalDynamicQuestions > 0 ? `คำถามที่ ${idx+1}: ` : 'รายละเอียดเพิ่มเติม: ') + (val || '-') + '\n';
+    });
+
+    if(!allQsFilled) { alert('กรุณากรอกคำถามให้ครบถ้วนตามจำนวนที่เลือกค่ะ'); return; }
+
+    const status = document.getElementById('f-status').value;
+    const age = document.getElementById('f-age').value.trim();
+    const day = document.getElementById('f-day').value;
+    const date = document.getElementById('f-date').value;
+    const time = document.getElementById('f-time').value;
+    const type = document.getElementById('f-type').value;
+
+    if (!status || !age || !day || !date || !time) {
+      alert('กรุณากรอกข้อมูลส่วนตัวสำหรับดูดวงให้ครบถ้วนค่ะ (สถานะ, อายุ, วันเกิด, วันเวลาจองคิว)'); return;
+    }
+
+    summary += `-----------------------------\n🔮 ข้อมูลบริการ:\n` +
+               `📅 จองคิววันที่: ${date} เวลา ${time} น.\n` +
+               `สถานะ: ${status} | อายุ: ${age} ปี | เกิดวัน: ${day}\n\n` +
+               `${qText}\n` +
+               `รูปแบบการรับคำทำนาย: ${type}\n`;
   }
 
   document.getElementById('summary-text').value = summary;
@@ -585,20 +794,16 @@ function generateSummaryAndSend() {
 }
 
 function copySummaryText() {
-  const box = document.getElementById('summary-text');
-  box.select();
-  navigator.clipboard.writeText(box.value).then(() => showToast('✅ คัดลอกสำเร็จ!'));
-}
-
-function clearCart() {
-  setTimeout(() => { location.reload(); }, 2000);
+  const summaryBox = document.getElementById('summary-text');
+  summaryBox.select();
+  copyText(summaryBox.value);
 }
 
 function showToast(msg) {
-  var t = document.getElementById('toast');
+  const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('on');
-  setTimeout(function(){ t.classList.remove('on'); },2600);
+  setTimeout(() => t.classList.remove('on'), 2600);
 }
 </script>
 
