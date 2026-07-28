@@ -49,12 +49,12 @@ border:1px solid rgba(30,111,255,.4);background:rgba(30,111,255,.12);color:#90c8
 .lb:hover{background:rgba(30,111,255,.3);border-color:#1e6fff;color:#fff;box-shadow:0 0 20px rgba(30,111,255,.3);transform:translateY(-2px)}
 
 /* SECTION TITLE */
-.sec{font-size:14px;font-weight:500;letter-spacing:2px;text-transform:uppercase;
+.sec{font-size:15px;font-weight:500;letter-spacing:1px;
 color:#00d4ff;margin:24px 0 14px;display:flex;align-items:center;gap:10px}
 .sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,212,255,.45),transparent)}
 
 /* GRID & CARDS */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:22px}
 .full{grid-column:1/-1}
 .card{background:linear-gradient(150deg,#0e2d5a 0%,#071224 100%);
 border:1px solid rgba(30,111,255,.26);border-radius:18px;padding:22px 20px;
@@ -64,10 +64,39 @@ position:relative;overflow:hidden;transition:all .3s}
 background:linear-gradient(90deg,transparent,#1e6fff,#00d4ff,transparent);opacity:0;transition:opacity .3s}
 .card:hover .ct{opacity:1}
 .ci{font-size:26px;margin-bottom:10px;display:block;filter:drop-shadow(0 0 8px rgba(30,111,255,.5))}
-.cttl{font-size:16px;font-weight:600;color:#e8f4ff;margin-bottom:12px}
+.cttl{font-size:16px;font-weight:600;color:#e8f4ff;margin-bottom:16px; border-bottom: 1px solid rgba(30,111,255,0.2); padding-bottom: 8px;}
 .cb{font-size:13px;color:#6a8fca;line-height:1.8}
-.row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(30,111,255,.09)}
+.row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(30,111,255,.09)}
 .row:last-child{border-bottom:none}
+
+.item-name {
+  flex: 1;
+  font-size: 13.5px;
+  color: #e8f4ff;
+  padding-right: 12px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.btn-add {
+  background: linear-gradient(135deg, #1e6fff, #00d4ff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+  margin-left: 8px;
+  box-shadow: 0 2px 8px rgba(30,111,255,.4);
+}
+.btn-add:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,212,255,.6);
+}
 
 .pt, .bdg {
   display:inline-flex;align-items:center;justify-content:center;
@@ -95,9 +124,6 @@ box-shadow:0 4px 24px rgba(30,111,255,.48);transition:all .25s;margin-top:14px}
 border:1px solid rgba(30,111,255,.48);border-radius:18px;padding:26px 20px;
 text-align:center;margin-bottom:22px;position:relative;overflow:hidden;
 box-shadow:0 0 40px rgba(30,111,255,.12)}
-.blbl{font-size:13px;color:#6a8fca;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
-.bnm{font-size:18px;font-weight:600;color:#e8f4ff;margin-bottom:4px}
-.bown{font-size:14px;color:#6a8fca;margin-bottom:18px}
 .bnum{display:block;font-size:clamp(22px,6vw,32px);font-weight:600;
 letter-spacing:3px;color:#00d4ff;text-shadow:0 0 24px rgba(0,212,255,.6);margin-bottom:18px}
 .cpbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 30px;border:none;border-radius:40px;cursor:pointer;
@@ -137,81 +163,423 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
     <div class="stag">✨ ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร</div>
     <div class="hl-links">
       <a href="https://lin.ee/ZdAU8Er" target="_blank" class="lb">💚 LINE Official</a>
-      <a href="https://www.facebook.com" target="_blank" class="lb">📘 Facebook</a>
-      <a href="https://www.instagram.com" target="_blank" class="lb">🌸 Instagram</a>
     </div>
   </div>
 
   <!-- SECTION 1: ดูดวง -->
-  <div class="sec fi">🔮 1. ดูดวง & ทำนายทายทัก</div>
+  <div class="sec fi">🔮 1. ดูดวง (ดูดวงแบบพิมพ์แชท และ เฉพาะทาง)</div>
   <div class="grid fi">
-    <div class="card">
-      <div class="ct"></div>
-      <span class="ci">🔮</span>
-      <div class="cttl">ดูดวงทั่วไป / ไพ่ยิปซี 1 คำถาม</div>
-      <div class="cb">เจาะลึกเฉพาะประเด็น รวดเร็ว ตรงใจ</div>
-      <div class="row" style="margin-top:12px;"><span>ราคาบริการ</span><span class="pt">59.-</span></div>
-      <button class="btn-action" onclick="addToCart('ดูดวงทั่วไป / ไพ่ยิปซี 1 คำถาม', 59, 'ดูดวง')">🛒 เพิ่มลงตะกร้า</button>
-    </div>
-    <div class="card">
-      <div class="ct"></div>
-      <span class="ci">📞</span>
-      <div class="cttl">แพ็กเกจโทรดูดวง (30 นาที)</div>
-      <div class="cb">พูดคุยสดๆ ให้คำปรึกษาเจาะลึกทุกเรื่อง</div>
-      <div class="row" style="margin-top:12px;"><span>ราคาบริการ</span><span class="pt">199.-</span></div>
-      <button class="btn-action" onclick="addToCart('แพ็กเกจโทรดูดวง (30 นาที)', 199, 'ดูดวง')">🛒 เพิ่มลงตะกร้า</button>
-    </div>
-  </div>
-
-  <!-- SECTION 2: พื้นที่รับฟัง -->
-  <div class="sec fi">🎧 2. พื้นที่รับฟัง (ฮีลใจ / ระบาย)</div>
-  <div class="grid fi">
+    <!-- Card 1 -->
     <div class="card">
       <div class="ct"></div>
       <span class="ci">💬</span>
-      <div class="cttl">พื้นที่รับฟังแบบพิมพ์ (30 นาที)</div>
-      <div class="cb">ระบายความในใจ พื้นที่ปลอดภัย ไม่ตัดสิน</div>
-      <div class="row" style="margin-top:12px;"><span>ราคาบริการ</span><span class="pt">49.-</span></div>
-      <button class="btn-action" onclick="addToCart('พื้นที่รับฟังแบบพิมพ์ (30 นาที)', 49, 'พื้นที่รับฟัง')">🛒 เพิ่มลงตะกร้า</button>
+      <div class="cttl">ดูดวงทั่วไป (แชท)</div>
+      
+      <div class="row">
+        <span class="item-name">Yes or No!! (1 คำถาม)</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">9.-</span>
+          <button class="btn-add" onclick="addToCart('Yes or No!! (1 คำถาม)', 9, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">1 คำถาม</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">29.-</span>
+          <button class="btn-add" onclick="addToCart('1 คำถาม', 29, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">3 คำถาม</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">69.-</span>
+          <button class="btn-add" onclick="addToCart('3 คำถาม', 69, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">5 คำถาม (ขายดี)</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">118.-</span>
+          <button class="btn-add" onclick="addToCart('5 คำถาม', 118, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">เซ็ทแม่หมอ (เจาะลึกความรัก)</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">129.-</span>
+          <button class="btn-add" onclick="addToCart('เซ็ทแม่หมอ (เจาะลึกความรัก)', 129, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">49.-</span>
+          <button class="btn-add" onclick="addToCart('ภาพรวมรายเดือน (รัก/เงิน/งาน/สุขภาพ/เรียน)', 49, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">เช็กล้วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">59.-</span>
+          <button class="btn-add" onclick="addToCart('เช็กล้วงใจ (เช็กความคิด/ความรู้สึกผู้อื่น)', 59, 'ดูดวง')">➕</button>
+        </div>
+      </div>
     </div>
+
+    <!-- Card 2 -->
     <div class="card">
       <div class="ct"></div>
-      <span class="ci">☎️</span>
-      <div class="cttl">พื้นที่รับฟังผ่านเสียงโทร (45 นาที)</div>
-      <div class="cb">พูดคุยสบายๆ รับฟังอย่างตั้งใจ เก็บความลับ</div>
-      <div class="row" style="margin-top:12px;"><span>ราคาบริการ</span><span class="pt">129.-</span></div>
-      <button class="btn-action" onclick="addToCart('พื้นที่รับฟังผ่านเสียงโทร (45 นาที)', 129, 'พื้นที่รับฟัง')">🛒 เพิ่มลงตะกร้า</button>
+      <span class="ci">✨</span>
+      <div class="cttl">ดูดวงเฉพาะทาง (เรื่องรอบตัว & สิ่งศักดิ์สิทธิ์)</div>
+      
+      <div class="row">
+        <span class="item-name">คนรอบตัวมองว่าเราเป็นคนยังไง</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">49.-</span>
+          <button class="btn-add" onclick="addToCart('คนรอบตัวมองว่าเราเป็นคนยังไง', 49, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ดูสีและอัญมณีเสริมดวงประจำตัว</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">69.-</span>
+          <button class="btn-add" onclick="addToCart('ดูสีและอัญมณีเสริมดวงประจำตัว', 69, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ดูเลขมงคลและทิศมงคลเสริมดวง</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">69.-</span>
+          <button class="btn-add" onclick="addToCart('ดูเลขมงคลและทิศมงคลเสริมดวง', 69, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">เลขบัตรประชาชนส่งผลอย่างไร</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">89.-</span>
+          <button class="btn-add" onclick="addToCart('เลขบัตรประชาชนส่งผลอย่างไร', 89, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ดูฤกษ์มงคล</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">99.-</span>
+          <button class="btn-add" onclick="addToCart('ดูฤกษ์มงคล', 99, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">บ้านเลขที่นี้อยู่แล้วเป็นอย่างไร</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">59.-</span>
+          <button class="btn-add" onclick="addToCart('บ้านเลขที่นี้อยู่แล้วเป็นอย่างไร', 59, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">สิ่งศักดิ์สิทธิ์ที่เรานับถืออยากบอกอะไร</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">159.-</span>
+          <button class="btn-add" onclick="addToCart('สิ่งศักดิ์สิทธิ์ที่เรานับถืออยากบอกอะไร', 159, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">คำถามเกี่ยวกับสิ่งศักดิ์สิทธิ์สิ่งลี้ลับ</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">259.-</span>
+          <button class="btn-add" onclick="addToCart('คำถามเกี่ยวกับสิ่งศักดิ์สิทธิ์สิ่งลี้ลับ', 259, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="ct"></div>
+      <span class="ci">❤️</span>
+      <div class="cttl">ดูดวงเฉพาะทาง (ไพ่เตือนใจ & ความรัก)</div>
+
+      <div class="row">
+        <span class="item-name">ไพ่อยากบอกหรือให้คำแนะนำอะไร</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">69.-</span>
+          <button class="btn-add" onclick="addToCart('ไพ่อยากบอกหรือให้คำแนะนำอะไร', 69, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ไพ่อยากเตือนเรื่องที่ต้องระวัง</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">79.-</span>
+          <button class="btn-add" onclick="addToCart('ไพ่อยากเตือนเรื่องที่ต้องระวัง', 79, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">สัตว์เลี้ยงอยากบอกอะไรถึงคุณ</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">79.-</span>
+          <button class="btn-add" onclick="addToCart('สัตว์เลี้ยงอยากบอกอะไรถึงคุณ', 79, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ทำนายฝันและแปลเลขจากฝัน</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">79.-</span>
+          <button class="btn-add" onclick="addToCart('ทำนายฝันและแปลเลขจากฝัน', 79, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ลักษณะแฟนในอนาคต</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">89.-</span>
+          <button class="btn-add" onclick="addToCart('ลักษณะแฟนในอนาคต', 89, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">เนื้อคู่ (รับอายุ 20+ ขึ้นไป)</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">199.-</span>
+          <button class="btn-add" onclick="addToCart('เนื้อคู่ (รับอายุ 20+ ขึ้นไป)', 199, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <div class="ct"></div>
+      <span class="ci">🔮</span>
+      <div class="cttl">ดูดวงเฉพาะทาง (ภาพรวม & อนาคต)</div>
+
+      <div class="row">
+        <span class="item-name">สิ่งที่ควรระวังในเดือนนี้</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">99.-</span>
+          <button class="btn-add" onclick="addToCart('สิ่งที่ควรระวังในเดือนนี้', 99, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">สุขภาพในเดือนนี้</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">99.-</span>
+          <button class="btn-add" onclick="addToCart('สุขภาพในเดือนนี้', 99, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ดวงเราภายใน 3 เดือนถัดจากนี้</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">199.-</span>
+          <button class="btn-add" onclick="addToCart('ดวงเราภายใน 3 เดือนถัดจากนี้', 199, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ดวงชะตารายสัปดาห์อย่างละเอียด</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">99.-</span>
+          <button class="btn-add" onclick="addToCart('ดวงชะตารายสัปดาห์อย่างละเอียด', 99, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ภาพรวมรายเดือน</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">199.-</span>
+          <button class="btn-add" onclick="addToCart('ภาพรวมรายเดือน', 199, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ดวงชะตารายเดือนอย่างละเอียด</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">299.-</span>
+          <button class="btn-add" onclick="addToCart('ดวงชะตารายเดือนอย่างละเอียด', 299, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ดวงชะตาราย 6 เดือน</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">499.-</span>
+          <button class="btn-add" onclick="addToCart('ดวงชะตาราย 6 เดือน', 499, 'ดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ดวงชะตารายปีอย่างละเอียด</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">799.-</span>
+          <button class="btn-add" onclick="addToCart('ดวงชะตารายปีอย่างละเอียด', 799, 'ดูดวง')">➕</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- SECTION 3: วอลเปเปอร์ -->
-  <div class="sec fi">🖼️ 3. วอลเปเปอร์เสริมดวง</div>
+  <!-- SECTION 2: โทรดูดวง -->
+  <div class="sec fi">📞 2. โทรดูดวง</div>
+  <div class="grid fi">
+    <div class="card full">
+      <div class="ct"></div>
+      <span class="ci">📞</span>
+      <div class="cttl">โทรดูดวง (พูดคุยสายตรง)</div>
+      
+      <div class="row">
+        <span class="item-name">โทรไม่จำกัดคำถาม - 10 นาที</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">99.-</span>
+          <button class="btn-add" onclick="addToCart('โทรไม่จำกัดคำถาม - 10 นาที', 99, 'โทรดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">โทรไม่จำกัดคำถาม - 15 นาที</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">129.-</span>
+          <button class="btn-add" onclick="addToCart('โทรไม่จำกัดคำถาม - 15 นาที', 129, 'โทรดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">โทรไม่จำกัดคำถาม - 30 นาที</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">189.-</span>
+          <button class="btn-add" onclick="addToCart('โทรไม่จำกัดคำถาม - 30 นาที', 189, 'โทรดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">โทรไม่จำกัดคำถาม - 1 ชั่วโมง</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">299.-</span>
+          <button class="btn-add" onclick="addToCart('โทรไม่จำกัดคำถาม - 1 ชั่วโมง', 299, 'โทรดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">ต่อเวลาโทร (บวกเพิ่มต่อ 10 นาที)</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">50.-</span>
+          <button class="btn-add" onclick="addToCart('ต่อเวลาโทร (บวกเพิ่มต่อ 10 นาที)', 50, 'โทรดูดวง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name" style="color:#f59e0b;">⚡ ออปชัน - โทรตอนนี้ + ลัดคิวทุกกรณี</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt" style="color:#f59e0b; border-color:rgba(245,158,11,0.5); background:rgba(245,158,11,0.1);">49.-</span>
+          <button class="btn-add" style="background:linear-gradient(135deg,#d97706,#f59e0b);" onclick="addToCart('ออปชัน - โทรตอนนี้ + ลัดคิวทุกกรณี', 49, 'โทรดูดวง')">➕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: พื้นที่รับฟัง -->
+  <div class="sec fi">🎧 3. พื้นที่รับฟัง (ฮีลใจ)</div>
+  <div class="grid fi">
+    <div class="card full">
+      <div class="ct"></div>
+      <span class="ci">☎️</span>
+      <div class="cttl">พื้นที่รับฟัง (สายคอล)</div>
+      <div class="cb" style="margin-bottom:12px;">*ไม่มีบริการแบบพิมพ์แชทในหมวดนี้*</div>
+
+      <div class="row">
+        <span class="item-name">ทดลอง/ลูกค้าใหม่ 10 นาที</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">59.-</span>
+          <button class="btn-add" onclick="addToCart('พื้นที่รับฟัง - ทดลอง 10 นาที', 59, 'พื้นที่รับฟัง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">30 นาที</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">139.-</span>
+          <button class="btn-add" onclick="addToCart('พื้นที่รับฟัง - 30 นาที', 139, 'พื้นที่รับฟัง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">60 นาที</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">239.-</span>
+          <button class="btn-add" onclick="addToCart('พื้นที่รับฟัง - 60 นาที', 239, 'พื้นที่รับฟัง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">90 นาที</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">329.-</span>
+          <button class="btn-add" onclick="addToCart('พื้นที่รับฟัง - 90 นาที', 329, 'พื้นที่รับฟัง')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">แพ็ก 3 ครั้ง (ครั้งละ 60 นาที)</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">659.-</span>
+          <button class="btn-add" onclick="addToCart('พื้นที่รับฟัง - แพ็ก 3 ครั้ง (ครั้งละ 60 นาที)', 659, 'พื้นที่รับฟัง')">➕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: วอลเปเปอร์ -->
+  <div class="sec fi">🖼️ 4. วอลเปเปอร์เสริมดวง</div>
   <div class="grid fi">
     <div class="card full">
       <div class="ct"></div>
       <span class="ci">📱</span>
-      <div class="cttl">วอลเปเปอร์มูเตลูเฉพาะบุคคล</div>
-      <div class="cb">ออกแบบเสริมดวงตามวันเกิดและชื่อ-นามสกุลเฉพาะคุณ</div>
-      <div class="row" style="margin-top:12px;"><span>ราคาบริการ</span><span class="pt">99.-</span></div>
-      <button class="btn-action" onclick="addToCart('วอลเปเปอร์มูเตลูเฉพาะบุคคล', 99, 'วอลเปเปอร์')">🛒 เพิ่มลงตะกร้า</button>
+      <div class="cttl">วอลเปเปอร์สายมู</div>
+      
+      <div class="row">
+        <span class="item-name">วอลเปเปอร์สายมูออกแบบเริ่มต้น</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">189.-</span>
+          <button class="btn-add" onclick="addToCart('วอลเปเปอร์สายมูออกแบบเริ่มต้น', 189, 'วอลเปเปอร์')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">วอลเปเปอร์สายมูให้แม่หมอดูเสริมทิศทางให้</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">199.-</span>
+          <button class="btn-add" onclick="addToCart('วอลเปเปอร์สายมูให้แม่หมอดูเสริมทิศทางให้', 199, 'วอลเปเปอร์')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">วอลเปเปอร์สายมูเพิ่มเรื่อง (บวกเพิ่มต่อเรื่อง)</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">39.-</span>
+          <button class="btn-add" onclick="addToCart('วอลเปเปอร์สายมูเพิ่มเรื่อง', 39, 'วอลเปเปอร์')">➕</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- SECTION 4: รับทำเว็บไซต์ -->
-  <div class="sec fi">💻 4. รับทำเว็บไซต์ (เรทราคาพิเศษ)</div>
+  <!-- SECTION 5: รับทำเว็บไซต์ -->
+  <div class="sec fi">💻 5. รับทำเว็บไซต์</div>
   <div class="grid fi">
     <div class="card full">
       <div class="ct"></div>
       <span class="ci">🖥️</span>
-      <div class="cttl">บริการรับทำเว็บไซต์ (สไตล์พรีเมียม)</div>
-      <div class="cb">
-        <div class="row"><span>ไม่เกิน 200 lines</span><span class="pt">129.-</span></div>
-        <div class="row"><span>เกิน 200 lines</span><span class="pt">139.-</span></div>
-        <div class="row"><span>เกิน 400 lines</span><span class="pt">189.-</span></div>
-        <div class="row"><span>เกิน 600 lines</span><span class="pt">249.-</span></div>
-        <div class="row"><span>แบนเนอร์ 1–2 รูป</span><span class="pt">+29.-</span></div>
+      <div class="cttl">บริการรับทำเว็บไซต์ (เรทราคาเดิม)</div>
+      
+      <div class="row">
+        <span class="item-name">ไม่เกิน 200 lines</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">129.-</span>
+          <button class="btn-add" onclick="addToCart('รับทำเว็บไซต์ - ไม่เกิน 200 lines', 129, 'รับทำเว็บไซต์')">➕</button>
+        </div>
       </div>
-      <button class="btn-action" onclick="addToCart('รับทำเว็บไซต์ (เริ่มต้น 129.-)', 129, 'รับทำเว็บไซต์')">🛒 เพิ่มลงตะกร้าบริการนี้</button>
+      <div class="row">
+        <span class="item-name">เกิน 200 lines</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">139.-</span>
+          <button class="btn-add" onclick="addToCart('รับทำเว็บไซต์ - เกิน 200 lines', 139, 'รับทำเว็บไซต์')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">เกิน 400 lines</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">189.-</span>
+          <button class="btn-add" onclick="addToCart('รับทำเว็บไซต์ - เกิน 400 lines', 189, 'รับทำเว็บไซต์')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">เกิน 600 lines</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">249.-</span>
+          <button class="btn-add" onclick="addToCart('รับทำเว็บไซต์ - เกิน 600 lines', 249, 'รับทำเว็บไซต์')">➕</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="item-name">แบนเนอร์ 1-2 รูป</span>
+        <div style="display:flex; align-items:center;">
+          <span class="pt">29.-</span>
+          <button class="btn-add" onclick="addToCart('แบนเนอร์เว็บไซต์ 1-2 รูป', 29, 'รับทำเว็บไซต์')">➕</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -337,9 +705,7 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
   <!-- CONTACTS -->
   <div class="sec fi">📱 ช่องทางติดต่อ</div>
   <div class="cons fi" style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:12px;">
-    <a href="https://www.facebook.com" target="_blank" class="lb">📘 Facebook</a>
     <a href="https://lin.ee/ZdAU8Er" target="_blank" class="lb">💚 LINE Official</a>
-    <a href="https://www.instagram.com" target="_blank" class="lb">🌸 Instagram</a>
   </div>
 
   <p style="text-align:center;font-size:12px;color:#3a5a8a;margin-top:30px;opacity:.7">© AhTao Mu-Space · ตอบกลับรวดเร็ว บริการด้วยใจจริง ✨</p>
@@ -422,7 +788,7 @@ function removeItem(index) {
 
 function copyText(textToCopy) {
   if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(textToCopy).then(() => showToast('✅ คัดลอกเลขบัญชีสำเร็จ!'));
+    navigator.clipboard.writeText(textToCopy).then(() => showToast('✅ คัดลอกสำเร็จ!'));
   } else {
     try {
       const tempTextArea = document.createElement('textarea');
@@ -433,7 +799,7 @@ function copyText(textToCopy) {
       tempTextArea.select();
       document.execCommand('copy');
       document.body.removeChild(tempTextArea);
-      showToast('✅ คัดลอกเลขบัญชีสำเร็จ!');
+      showToast('✅ คัดลอกสำเร็จ!');
     } catch (err) {
       console.error('Failed to copy', err);
     }
