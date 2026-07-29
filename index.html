@@ -42,11 +42,6 @@ background:linear-gradient(135deg,#60a5fa 0%,#00d4ff 50%,#a78bfa 100%);
 -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 margin-bottom:8px;letter-spacing:-1px}
 .stag{font-size:14px;color:#6a8fca;margin-bottom:20px;line-height:1.6}
-.hl-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.lb{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:40px;
-font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;
-border:1px solid rgba(30,111,255,.4);background:rgba(30,111,255,.12);color:#90c8ff}
-.lb:hover{background:rgba(30,111,255,.3);border-color:#1e6fff;color:#fff;box-shadow:0 0 20px rgba(30,111,255,.3);transform:translateY(-2px)}
 
 /* SECTION TITLE */
 .sec{font-size:15px;font-weight:500;letter-spacing:1px;
@@ -116,10 +111,12 @@ font-family:'Mitr',sans-serif;font-size:14px;font-weight:600;color:#fff;
 background:linear-gradient(135deg,#1e6fff,#00d4ff);
 box-shadow:0 4px 24px rgba(30,111,255,.48);transition:all .25s;margin-top:14px}
 .btn-action:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(30,111,255,.62)}
-.btn-admin{position:absolute; top:16px; right:16px; width:44px; height:44px; border-radius:50%;
-background:rgba(30,111,255,0.15); border:1px solid rgba(30,111,255,0.4); font-size:20px; cursor:pointer; color:#fff;
-z-index:20; transition:all .3s; display:flex; align-items:center; justify-content:center;}
-.btn-admin:hover{background:rgba(30,111,255,0.3); transform:rotate(90deg);}
+
+/* ADMIN BUTTON FIXED */
+.btn-admin{position:fixed; top:16px; right:16px; width:44px; height:44px; border-radius:50%;
+background:rgba(30,111,255,0.15); border:1px solid rgba(30,111,255,0.5); font-size:20px; cursor:pointer; color:#fff;
+z-index:9999; transition:all .3s; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(30,111,255,.3);}
+.btn-admin:hover{background:rgba(30,111,255,0.4); transform:rotate(90deg) scale(1.1);}
 
 /* FORM CONTROLS */
 .form-group{margin-bottom:16px}
@@ -142,8 +139,8 @@ background:linear-gradient(135deg,#1e6fff,#00d4ff);
 box-shadow:0 4px 24px rgba(30,111,255,.48);transition:all .25s}
 .cpbtn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(30,111,255,.62)}
 
-/* MODAL ADMIN */
-#admin-modal {
+/* MODALS */
+#admin-modal, #intro-modal {
   display:none; position:fixed; inset:0; background:rgba(0,5,15,0.85);
   backdrop-filter:blur(4px); z-index:10000; overflow-y:auto; padding:20px;
 }
@@ -171,18 +168,20 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
 <div id="bgr"></div>
 <div id="pts"></div>
 
+<!-- ADMIN BUTTON (FIXED AT TOP RIGHT) -->
+<button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">⚙️</button>
+
 <div id="w">
 
   <!-- HEADER -->
   <div class="hdr fi">
     <div class="hg"></div>
-    <button class="btn-admin" onclick="openAdmin()" title="จัดการร้านค้า">⚙️</button>
     <div class="hbdg">🔮 Mu-Space & Services Official</div>
     <div class="sn">AhTao<br>Mu-Space</div>
-    <div class="stag">✨ ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร</div>
-    <div class="hl-links">
-      <a href="https://lin.ee/ZdAU8Er" target="_blank" class="lb">💚 LINE Official</a>
-    </div>
+    <div class="stag" style="margin-bottom:10px;">✨ ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร</div>
+    
+    <!-- MARQUEE TEXT -->
+    <marquee id="marquee-text-display" scrollamount="4" style="color:#00d4ff; font-size:14px; margin-top:12px; background:rgba(30,111,255,.1); padding:8px 16px; border-radius:12px; border:1px solid rgba(30,111,255,.3); width:100%; box-shadow:inset 0 0 10px rgba(30,111,255,0.2);"></marquee>
   </div>
 
   <!-- DYNAMIC PRODUCTS CONTAINER -->
@@ -361,32 +360,39 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
     </div>
   </div>
 
-  <!-- SUMMARY & LINE OUTPUT -->
+  <!-- SUMMARY & LINE/FB OUTPUT -->
   <div id="summary-area" class="card full fi" style="display:none; margin-bottom:22px; height:auto;">
     <div class="ct"></div>
-    <div class="cttl">🎉 สรุปข้อความสำหรับส่งให้แอดมินทาง LINE</div>
-    <div class="cb" style="margin-bottom:12px;">คัดลอกข้อความด้านล่างนี้ แล้วกดปุ่มเปิด LINE เพื่อส่งให้แอดมินพร้อมแนบสลิปได้เลยค่ะ</div>
+    <div class="cttl">🎉 สรุปข้อความสำหรับส่งให้แอดมิน</div>
+    <div class="cb" style="margin-bottom:12px;">ตรวจสอบข้อมูล จากนั้นเลือกช่องทางติดต่อเพื่อส่งข้อความ (ระบบจะคัดลอกอัตโนมัติ)</div>
     <div class="form-group">
       <textarea id="summary-text" class="form-control" rows="12" readonly style="font-size:12px; background:#020610; color:#c8deff; cursor:text;"></textarea>
     </div>
-    <button class="cpbtn" style="width:100%; justify-content:center; margin-bottom:10px;" onclick="copySummaryText()">📋 คัดลอกข้อความสรุป</button>
-    <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="background:#00c355; text-decoration:none; text-align:center; display:block;">💚 เปิดแอป LINE (ส่งข้อมูล + สลิป)</a>
+    
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="https://lin.ee/ZdAU8Er" target="_blank" class="btn-action" style="flex:1; background:#00c355; text-decoration:none; text-align:center; display:flex; justify-content:center; margin-top:0; min-width:140px;" onclick="copySummaryText()">💚 ส่งผ่าน LINE</a>
+      <button class="btn-action" style="flex:1; background:#1877f2; text-decoration:none; text-align:center; display:flex; justify-content:center; margin-top:0; min-width:140px;" onclick="sendViaFacebook()">💙 ส่งผ่าน Facebook</button>
+    </div>
   </div>
 
-  <!-- CONTACTS -->
-  <div class="sec fi">📱 ช่องทางติดต่อ</div>
-  <div class="cons fi" style="display:flex; justify-content:center; flex-wrap:wrap; margin-top:12px;">
-    <a href="https://lin.ee/ZdAU8Er" target="_blank" class="lb">💚 LINE Official</a>
-  </div>
   <p style="text-align:center;font-size:12px;color:#3a5a8a;margin-top:30px;opacity:.7">© AhTao Mu-Space · ตอบกลับรวดเร็ว บริการด้วยใจจริง ✨</p>
 
+</div>
+
+<!-- INTRO MODAL -->
+<div id="intro-modal" style="display:flex; position:fixed; inset:0; background:rgba(0,5,15,0.85); backdrop-filter:blur(4px); z-index:10000; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s; visibility:hidden;">
+  <div class="admin-box" style="margin:20px; width:100%; max-width:400px; text-align:center; position:relative; transform:translateY(20px); transition:transform 0.3s;" id="intro-box">
+    <h3 style="color:#00d4ff; margin-top:0; font-size:18px;">📖 วิธีใช้งานเว็บไซต์</h3>
+    <div id="intro-text-display" style="color:#e8f4ff; font-size:14px; line-height:1.6; text-align:left; white-space:pre-wrap; margin-bottom:20px; background:rgba(255,255,255,0.05); padding:16px; border-radius:12px; border:1px dashed rgba(30,111,255,0.4);"></div>
+    <button class="btn-action" style="margin-top:0;" onclick="closeIntro()">เข้าใจแล้ว เริ่มใช้งานเลย! ✨</button>
+  </div>
 </div>
 
 <!-- ADMIN MODAL -->
 <div id="admin-modal">
   <div class="admin-box">
     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(30,111,255,0.3); padding-bottom:16px; margin-bottom:20px;">
-      <h2 style="color:#00d4ff; margin:0;">⚙️ จัดการรายการสินค้า</h2>
+      <h2 style="color:#00d4ff; margin:0;">⚙️ จัดการระบบหลังบ้าน</h2>
       <button onclick="closeAdmin()" style="background:none; border:none; color:#fff; font-size:24px; cursor:pointer;">&times;</button>
     </div>
     
@@ -404,6 +410,12 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
 <div class="toast" id="toast">✅ ดำเนินการสำเร็จ!</div>
 
 <script>
+// Default Settings
+let muSettings = {
+  marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space 🔮 ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร ✨",
+  intro: "1. เลือกบริการที่ต้องการโดยกดปุ่ม ➕\n2. ตรวจสอบรายการในตะกร้าและกด \"สร้างข้อความสรุป\"\n3. เลือกช่องทางติดต่อ (LINE หรือ Facebook)\n4. ระบบจะคัดลอกข้อความอัตโนมัติ ให้นำไปวางส่งหาแอดมินได้เลยค่ะ 💖"
+};
+
 // Default Data Structure
 const defaultData = [
   {
@@ -539,9 +551,18 @@ let totalDynamicQuestions = 0;
 
 // Initialize System
 document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('muSpaceProducts');
-  if (saved) {
-    try { productData = JSON.parse(saved); } 
+  // Load Settings
+  const savedSet = localStorage.getItem('muSpaceSettings');
+  if (savedSet) {
+    try { muSettings = JSON.parse(savedSet); } catch(e){}
+  }
+  document.getElementById('marquee-text-display').textContent = muSettings.marquee;
+  document.getElementById('intro-text-display').textContent = muSettings.intro;
+
+  // Load Products
+  const savedProd = localStorage.getItem('muSpaceProducts');
+  if (savedProd) {
+    try { productData = JSON.parse(savedProd); } 
     catch(e) { productData = JSON.parse(JSON.stringify(defaultData)); }
   } else {
     productData = JSON.parse(JSON.stringify(defaultData));
@@ -563,7 +584,28 @@ document.addEventListener('DOMContentLoaded', () => {
     el.style.cssText=`width:${s}px;height:${s}px;background:${cs[i%cs.length]};left:${Math.random()*100}%;animation-duration:${9+Math.random()*12}s;animation-delay:${Math.random()*12}s;box-shadow:0 0 ${s*3}px currentColor;`;
     pc.appendChild(el);
   }
+
+  // Show Intro Modal
+  setTimeout(() => {
+    const m = document.getElementById('intro-modal');
+    const b = document.getElementById('intro-box');
+    m.style.display = 'flex'; // Ensure it's active
+    m.style.visibility = 'visible';
+    m.style.opacity = '1';
+    b.style.transform = 'translateY(0)';
+  }, 500);
 });
+
+function closeIntro() {
+  const m = document.getElementById('intro-modal');
+  const b = document.getElementById('intro-box');
+  m.style.opacity = '0';
+  b.style.transform = 'translateY(20px)';
+  setTimeout(() => {
+    m.style.visibility = 'hidden';
+    m.style.display = 'none';
+  }, 300);
+}
 
 // Render Products to HTML
 function renderProducts() {
@@ -599,7 +641,7 @@ function renderProducts() {
   container.innerHTML = html;
 }
 
-// Admin Panel Logic with Password Protection
+// Admin Panel Logic
 function openAdmin() {
   const pass = prompt("🔒 กรุณากรอกรหัสผ่านเพื่อเข้าสู่ระบบจัดการร้าน:");
   if (pass === "1164") {
@@ -628,7 +670,20 @@ function updateDataFromDOM() {
 }
 
 function renderAdminPanel() {
-  let html = '';
+  let html = `
+    <div style="background:rgba(255,255,255,0.05); padding:14px; margin-bottom:20px; border-radius:12px; border:1px solid rgba(245,158,11,0.4);">
+      <h4 style="margin:0 0 10px 0; color:#f59e0b;">📝 ตั้งค่าข้อความทั่วไป</h4>
+      <div class="form-group">
+        <label>ข้อความวิ่ง (Marquee)</label>
+        <input type="text" id="admin-marquee" class="form-control" value="${muSettings.marquee.replace(/"/g, '&quot;')}">
+      </div>
+      <div class="form-group" style="margin-bottom:0;">
+        <label>วิธีใช้เว็บไซต์ (Popup)</label>
+        <textarea id="admin-intro" class="form-control" rows="4">${muSettings.intro}</textarea>
+      </div>
+    </div>
+  `;
+
   productData.forEach((sec, sIdx) => {
     html += `<h3 style="color:#e8f4ff; border-left:4px solid #1e6fff; padding-left:10px; margin-top:20px;">${sec.sectionTitle}</h3>`;
     sec.cards.forEach((card, cIdx) => {
@@ -663,6 +718,16 @@ function deleteItem(sIdx, cIdx, iIdx) {
 
 function saveAdmin() {
   updateDataFromDOM();
+  
+  // Save Settings
+  muSettings.marquee = document.getElementById('admin-marquee').value;
+  muSettings.intro = document.getElementById('admin-intro').value;
+  localStorage.setItem('muSpaceSettings', JSON.stringify(muSettings));
+  
+  document.getElementById('marquee-text-display').textContent = muSettings.marquee;
+  document.getElementById('intro-text-display').textContent = muSettings.intro;
+
+  // Save Products
   localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
   closeAdmin();
   renderProducts();
@@ -671,6 +736,7 @@ function saveAdmin() {
 
 function resetAdmin() {
   if(confirm("คำเตือน: การรีเซ็ตจะทำให้ข้อมูลที่คุณแก้ไขหายไปทั้งหมด และกลับไปเป็นค่าเริ่มต้นของระบบ ยืนยันหรือไม่?")) {
+    localStorage.removeItem('muSpaceSettings');
     localStorage.removeItem('muSpaceProducts');
     location.reload();
   }
@@ -940,6 +1006,13 @@ function copySummaryText() {
   const summaryBox = document.getElementById('summary-text');
   summaryBox.select();
   copyText(summaryBox.value);
+}
+
+function sendViaFacebook() {
+  copySummaryText();
+  setTimeout(() => {
+    window.open('https://m.me/taotofu.meow', '_blank');
+  }, 400);
 }
 
 function showToast(msg) {
