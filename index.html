@@ -111,6 +111,10 @@ font-family:'Mitr',sans-serif;font-size:14px;font-weight:600;color:#fff;
 background:linear-gradient(135deg,#1e6fff,#00d4ff);
 box-shadow:0 4px 24px rgba(30,111,255,.48);transition:all .25s;margin-top:14px}
 .btn-action:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(30,111,255,.62)}
+.lb{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:40px;
+font-size:13px;font-weight:600;text-decoration:none;transition:all .25s;
+border:1px solid rgba(30,111,255,.4);background:rgba(30,111,255,.12);color:#90c8ff}
+.lb:hover{background:rgba(30,111,255,.3);border-color:#1e6fff;color:#fff;box-shadow:0 0 20px rgba(30,111,255,.3);transform:translateY(-2px)}
 
 /* ADMIN BUTTON FIXED */
 .btn-admin{position:fixed; top:16px; right:16px; width:44px; height:44px; border-radius:50%;
@@ -181,7 +185,7 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
     <div class="stag" style="margin-bottom:10px;">✨ ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร</div>
     
     <!-- MARQUEE TEXT -->
-    <marquee id="marquee-text-display" scrollamount="4" style="color:#00d4ff; font-size:14px; margin-top:12px; background:rgba(30,111,255,.1); padding:8px 16px; border-radius:12px; border:1px solid rgba(30,111,255,.3); width:100%; box-shadow:inset 0 0 10px rgba(30,111,255,0.2);"></marquee>
+    <marquee id="marquee-text-display" scrollamount="2" style="color:#00d4ff; font-size:14px; margin-top:12px; background:rgba(30,111,255,.1); padding:8px 16px; border-radius:12px; border:1px solid rgba(30,111,255,.3); width:100%; box-shadow:inset 0 0 10px rgba(30,111,255,0.2);"></marquee>
   </div>
 
   <!-- DYNAMIC PRODUCTS CONTAINER -->
@@ -375,12 +379,18 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
     </div>
   </div>
 
+  <!-- CONTACTS FOOTER -->
+  <div class="sec fi">📱 ช่องทางติดต่อ</div>
+  <div class="cons fi" style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:12px;">
+    <a href="https://lin.ee/ZdAU8Er" target="_blank" class="lb">💚 LINE Official</a>
+    <a href="https://m.me/taotofu.meow" target="_blank" class="lb" style="border-color:#1877f2; background:rgba(24,119,242,0.15);">💙 Facebook Messenger</a>
+  </div>
   <p style="text-align:center;font-size:12px;color:#3a5a8a;margin-top:30px;opacity:.7">© AhTao Mu-Space · ตอบกลับรวดเร็ว บริการด้วยใจจริง ✨</p>
 
 </div>
 
 <!-- INTRO MODAL -->
-<div id="intro-modal" style="display:flex; position:fixed; inset:0; background:rgba(0,5,15,0.85); backdrop-filter:blur(4px); z-index:10000; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s; visibility:hidden;">
+<div id="intro-modal" style="display:none; position:fixed; inset:0; background:rgba(0,5,15,0.85); backdrop-filter:blur(4px); z-index:10000; align-items:center; justify-content:center; opacity:0; transition:opacity 0.3s; visibility:hidden;">
   <div class="admin-box" style="margin:20px; width:100%; max-width:400px; text-align:center; position:relative; transform:translateY(20px); transition:transform 0.3s;" id="intro-box">
     <h3 style="color:#00d4ff; margin-top:0; font-size:18px;">📖 วิธีใช้งานเว็บไซต์</h3>
     <div id="intro-text-display" style="color:#e8f4ff; font-size:14px; line-height:1.6; text-align:left; white-space:pre-wrap; margin-bottom:20px; background:rgba(255,255,255,0.05); padding:16px; border-radius:12px; border:1px dashed rgba(30,111,255,0.4);"></div>
@@ -413,6 +423,7 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
 // Default Settings
 let muSettings = {
   marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space 🔮 ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร ✨",
+  marqueeSpeed: 2,
   intro: "1. เลือกบริการที่ต้องการโดยกดปุ่ม ➕\n2. ตรวจสอบรายการในตะกร้าและกด \"สร้างข้อความสรุป\"\n3. เลือกช่องทางติดต่อ (LINE หรือ Facebook)\n4. ระบบจะคัดลอกข้อความอัตโนมัติ ให้นำไปวางส่งหาแอดมินได้เลยค่ะ 💖"
 };
 
@@ -554,9 +565,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load Settings
   const savedSet = localStorage.getItem('muSpaceSettings');
   if (savedSet) {
-    try { muSettings = JSON.parse(savedSet); } catch(e){}
+    try { 
+      let parsed = JSON.parse(savedSet);
+      muSettings = { ...muSettings, ...parsed }; // Merge to keep defaults if missing
+    } catch(e){}
   }
-  document.getElementById('marquee-text-display').textContent = muSettings.marquee;
+  
+  const marqueeEl = document.getElementById('marquee-text-display');
+  marqueeEl.textContent = muSettings.marquee;
+  marqueeEl.setAttribute('scrollamount', muSettings.marqueeSpeed || 2);
+  
   document.getElementById('intro-text-display').textContent = muSettings.intro;
 
   // Load Products
@@ -585,18 +603,21 @@ document.addEventListener('DOMContentLoaded', () => {
     pc.appendChild(el);
   }
 
-  // Show Intro Modal
-  setTimeout(() => {
-    const m = document.getElementById('intro-modal');
-    const b = document.getElementById('intro-box');
-    m.style.display = 'flex'; // Ensure it's active
-    m.style.visibility = 'visible';
-    m.style.opacity = '1';
-    b.style.transform = 'translateY(0)';
-  }, 500);
+  // Show Intro Modal only once per session
+  if (!sessionStorage.getItem('hasSeenMuIntro')) {
+    setTimeout(() => {
+      const m = document.getElementById('intro-modal');
+      const b = document.getElementById('intro-box');
+      m.style.display = 'flex';
+      m.style.visibility = 'visible';
+      m.style.opacity = '1';
+      b.style.transform = 'translateY(0)';
+    }, 500);
+  }
 });
 
 function closeIntro() {
+  sessionStorage.setItem('hasSeenMuIntro', 'true');
   const m = document.getElementById('intro-modal');
   const b = document.getElementById('intro-box');
   m.style.opacity = '0';
@@ -677,6 +698,10 @@ function renderAdminPanel() {
         <label>ข้อความวิ่ง (Marquee)</label>
         <input type="text" id="admin-marquee" class="form-control" value="${muSettings.marquee.replace(/"/g, '&quot;')}">
       </div>
+      <div class="form-group">
+        <label>ความเร็วข้อความวิ่ง (ตัวเลข 1-10)</label>
+        <input type="number" id="admin-marquee-speed" class="form-control" value="${muSettings.marqueeSpeed || 2}" min="1" max="10">
+      </div>
       <div class="form-group" style="margin-bottom:0;">
         <label>วิธีใช้เว็บไซต์ (Popup)</label>
         <textarea id="admin-intro" class="form-control" rows="4">${muSettings.intro}</textarea>
@@ -721,10 +746,13 @@ function saveAdmin() {
   
   // Save Settings
   muSettings.marquee = document.getElementById('admin-marquee').value;
+  muSettings.marqueeSpeed = parseInt(document.getElementById('admin-marquee-speed').value) || 2;
   muSettings.intro = document.getElementById('admin-intro').value;
   localStorage.setItem('muSpaceSettings', JSON.stringify(muSettings));
   
-  document.getElementById('marquee-text-display').textContent = muSettings.marquee;
+  const marqueeEl = document.getElementById('marquee-text-display');
+  marqueeEl.textContent = muSettings.marquee;
+  marqueeEl.setAttribute('scrollamount', muSettings.marqueeSpeed);
   document.getElementById('intro-text-display').textContent = muSettings.intro;
 
   // Save Products
@@ -869,6 +897,8 @@ function copyText(textToCopy) {
       const tempTextArea = document.createElement('textarea');
       tempTextArea.value = textToCopy;
       tempTextArea.style.position = "fixed";
+      tempTextArea.style.top = "0";
+      tempTextArea.style.left = "0";
       document.body.appendChild(tempTextArea);
       tempTextArea.focus();
       tempTextArea.select();
