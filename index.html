@@ -420,14 +420,19 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
 <div class="toast" id="toast">✅ ดำเนินการสำเร็จ!</div>
 
 <script>
-// Default Settings
+// ==========================================
+// FULL STACK API CONFIGURATION
+// ==========================================
+const API_URL = "https://script.google.com/macros/s/AKfycbxdSFkoMgRJWi7qauJWoywC9hGaVzy-9P1X82z2mYFGJIhAMBjv9c8CD7E09dfOSs6r/exec";
+
+// Default Settings Fallback
 let muSettings = {
   marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space 🔮 ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร ✨",
   marqueeSpeed: 2,
   intro: "1. เลือกบริการที่ต้องการโดยกดปุ่ม ➕\n2. ตรวจสอบรายการในตะกร้าและกด \"สร้างข้อความสรุป\"\n3. เลือกช่องทางติดต่อ (LINE หรือ Facebook)\n4. ระบบจะคัดลอกข้อความอัตโนมัติ ให้นำไปวางส่งหาแอดมินได้เลยค่ะ 💖"
 };
 
-// Default Data Structure
+// Default Products Fallback
 const defaultData = [
   {
     sectionTitle: "🔮 1. ดูดวง (ดูดวงแบบพิมพ์แชท และ เฉพาะทาง)",
@@ -561,37 +566,7 @@ let hasHeal = false;
 let totalDynamicQuestions = 0;
 
 // Initialize System
-document.addEventListener('DOMContentLoaded', () => {
-  // Load Settings
-  const savedSet = localStorage.getItem('muSpaceSettings');
-  if (savedSet) {
-    try { 
-      let parsed = JSON.parse(savedSet);
-      muSettings = { ...muSettings, ...parsed }; // Merge to keep defaults if missing
-    } catch(e){}
-  }
-  
-  const marqueeEl = document.getElementById('marquee-text-display');
-  marqueeEl.textContent = muSettings.marquee;
-  marqueeEl.setAttribute('scrollamount', muSettings.marqueeSpeed || 2);
-  
-  document.getElementById('intro-text-display').textContent = muSettings.intro;
-
-  // Load Products
-  const savedProd = localStorage.getItem('muSpaceProducts');
-  if (savedProd) {
-    try { productData = JSON.parse(savedProd); } 
-    catch(e) { productData = JSON.parse(JSON.stringify(defaultData)); }
-  } else {
-    productData = JSON.parse(JSON.stringify(defaultData));
-  }
-  
-  const today = new Date().toISOString().split('T')[0];
-  const dateInput = document.getElementById('f-date');
-  if (dateInput) dateInput.value = today;
-
-  renderProducts();
-  
+document.addEventListener('DOMContentLoaded', async () => {
   // Particles generator
   const pc=document.getElementById('pts');
   const cs=['#1e6fff','#00d4ff','#a78bfa','#60a5fa','#00c8ff'];
@@ -603,7 +578,12 @@ document.addEventListener('DOMContentLoaded', () => {
     pc.appendChild(el);
   }
 
-  // Show Intro Modal only once per session
+  // Initial UI Setup
+  const today = new Date().toISOString().split('T')[0];
+  const dateInput = document.getElementById('f-date');
+  if (dateInput) dateInput.value = today;
+
+  // Show Intro Modal on first visit
   if (!sessionStorage.getItem('hasSeenMuIntro')) {
     setTimeout(() => {
       const m = document.getElementById('intro-modal');
@@ -614,7 +594,59 @@ document.addEventListener('DOMContentLoaded', () => {
       b.style.transform = 'translateY(0)';
     }, 500);
   }
+
+  document.getElementById('products-wrapper').innerHTML = '<div style="text-align:center; color:#00d4ff; padding:40px;">⏳ กำลังซิงค์ข้อมูลจากระบบ Cloud...</div>';
+
+  // Fetch Data from Cloud API (GET)
+  try {
+    const response = await fetch(API_URL + "?action=getData");
+    const result = await response.json();
+    
+    if (result && result.settings && result.products) {
+      muSettings = result.settings;
+      productData = result.products;
+      // Cache locally
+      localStorage.setItem('muSpaceSettings', JSON.stringify(muSettings));
+      localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
+      console.log("✅ Cloud data loaded successfully.");
+    } else {
+      throw new Error("Invalid Cloud Data Format");
+    }
+  } catch (error) {
+    console.warn("⚠️ Cloud fetch failed, falling back to local storage.", error);
+    loadLocalFallback();
+  }
+
+  // Apply Settings & Render
+  applySettingsAndRender();
 });
+
+function loadLocalFallback() {
+  const savedSet = localStorage.getItem('muSpaceSettings');
+  if (savedSet) {
+    try { 
+      let parsed = JSON.parse(savedSet);
+      muSettings = { ...muSettings, ...parsed };
+    } catch(e){}
+  }
+  
+  const savedProd = localStorage.getItem('muSpaceProducts');
+  if (savedProd) {
+    try { productData = JSON.parse(savedProd); } 
+    catch(e) { productData = JSON.parse(JSON.stringify(defaultData)); }
+  } else {
+    productData = JSON.parse(JSON.stringify(defaultData));
+  }
+}
+
+function applySettingsAndRender() {
+  const marqueeEl = document.getElementById('marquee-text-display');
+  marqueeEl.textContent = muSettings.marquee;
+  marqueeEl.setAttribute('scrollamount', muSettings.marqueeSpeed || 2);
+  
+  document.getElementById('intro-text-display').textContent = muSettings.intro;
+  renderProducts();
+}
 
 function closeIntro() {
   sessionStorage.setItem('hasSeenMuIntro', 'true');
@@ -662,7 +694,7 @@ function renderProducts() {
   container.innerHTML = html;
 }
 
-// Admin Panel Logic
+// Admin Panel Logic (Cloud Sync - POST)
 function openAdmin() {
   const pass = prompt("🔒 กรุณากรอกรหัสผ่านเพื่อเข้าสู่ระบบจัดการร้าน:");
   if (pass === "1164") {
@@ -741,25 +773,46 @@ function deleteItem(sIdx, cIdx, iIdx) {
   renderAdminPanel();
 }
 
-function saveAdmin() {
+async function saveAdmin() {
   updateDataFromDOM();
   
-  // Save Settings
+  // Update Local State
   muSettings.marquee = document.getElementById('admin-marquee').value;
   muSettings.marqueeSpeed = parseInt(document.getElementById('admin-marquee-speed').value) || 2;
   muSettings.intro = document.getElementById('admin-intro').value;
-  localStorage.setItem('muSpaceSettings', JSON.stringify(muSettings));
-  
-  const marqueeEl = document.getElementById('marquee-text-display');
-  marqueeEl.textContent = muSettings.marquee;
-  marqueeEl.setAttribute('scrollamount', muSettings.marqueeSpeed);
-  document.getElementById('intro-text-display').textContent = muSettings.intro;
 
-  // Save Products
-  localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
-  closeAdmin();
-  renderProducts();
-  showToast('✅ บันทึกข้อมูลร้านค้าสำเร็จ!');
+  try {
+    showToast('⏳ กำลังบันทึกข้อมูลลง Cloud...');
+    
+    // POST to Cloud
+    const payload = {
+      action: "saveAdminData",
+      settings: muSettings,
+      products: productData
+    };
+    
+    await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" }, // Avoid CORS preflight on GAS
+      body: JSON.stringify(payload)
+    });
+
+    // Save locally
+    localStorage.setItem('muSpaceSettings', JSON.stringify(muSettings));
+    localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
+    
+    closeAdmin();
+    showToast('✅ บันทึกข้อมูลร้านค้าสำเร็จ!');
+    setTimeout(() => location.reload(), 800); // Reload to reflect fresh sync
+    
+  } catch (error) {
+    console.error(error);
+    alert("เกิดข้อผิดพลาดในการเชื่อมต่อ Cloud (ระบบจะบันทึกเฉพาะในเครื่องชั่วคราว)");
+    localStorage.setItem('muSpaceSettings', JSON.stringify(muSettings));
+    localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
+    closeAdmin();
+    applySettingsAndRender();
+  }
 }
 
 function resetAdmin() {
@@ -1026,10 +1079,32 @@ function generateSummaryAndSend() {
     summary += `-----------------------------\n`;
   }
 
+  // Update UI
   document.getElementById('summary-text').value = summary;
   document.getElementById('summary-area').style.display = 'block';
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  showToast('🎉 สร้างข้อความสรุปเรียบร้อย!');
+  showToast('🎉 สร้างข้อความสรุปและส่งเข้าระบบเรียบร้อย!');
+
+  // SEND ORDER TO CLOUD API (POST)
+  try {
+    const orderPayload = {
+      action: "createOrder",
+      customerName: name,
+      cartItems: currentCart,
+      totalPrice: totalPrice,
+      summaryText: summary,
+      timestamp: new Date().toISOString()
+    };
+
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Prevent CORS Preflight block
+      body: JSON.stringify(orderPayload)
+    }).then(res => console.log('✅ Order synced to Cloud Database'))
+      .catch(err => console.warn('⚠️ Cloud Sync Order Warning:', err));
+  } catch (error) {
+    console.error("Cloud Sync Failed:", error);
+  }
 }
 
 function copySummaryText() {
