@@ -427,14 +427,14 @@ transition:transform .35s cubic-bezier(.34,1.56,.64,1);visibility:hidden}
 // ==========================================
 const API_URL = "https://script.google.com/macros/s/AKfycbxdSFkoMgRJWi7qauJWoywC9hGaVzy-9P1X82z2mYFGJIhAMBjv9c8CD7E09dfOSs6r/exec";
 
-// Default Settings (สมบูรณ์)
-let muSettings = {
+// Default Settings
+let defaultSettings = {
   marquee: "✨ ยินดีต้อนรับสู่ AhTao Mu-Space 🔮 ร้านดูดวง พื้นที่รับฟัง วอลเปเปอร์มูเตลู และรับทำเว็บไซต์ครบวงจร ✨",
   marqueeSpeed: 2,
   intro: "1. เลือกบริการที่ต้องการโดยกดปุ่ม ➕\n2. ตรวจสอบรายการในตะกร้าและกด \"สร้างข้อความสรุป\"\n3. เลือกช่องทางติดต่อ (LINE หรือ Facebook)\n4. ระบบจะคัดลอกข้อความอัตโนมัติ ให้นำไปวางส่งหาแอดมินได้เลยค่ะ 💖"
 };
 
-// Default Products (สมบูรณ์ 100% ไม่มีตัดทอน)
+// Default Products 
 const defaultData = [
   {
     sectionTitle: "🔮 1. ดูดวง (ดูดวงแบบพิมพ์แชท และ เฉพาะทาง)",
@@ -555,6 +555,7 @@ const defaultData = [
   }
 ];
 
+let muSettings = { ...defaultSettings };
 let productData = JSON.parse(JSON.stringify(defaultData));
 let currentCart = [];
 
@@ -584,50 +585,43 @@ document.addEventListener('DOMContentLoaded', async () => {
   const dateInput = document.getElementById('f-date');
   if (dateInput) dateInput.value = today;
 
-  // Cloud Sync System with Absolute Safety Measure
-  let fetchSuccess = false;
+  // โหลดข้อมูลเบื้องต้นจาก LocalStorage เผื่อไว้ก่อน
+  const localSet = localStorage.getItem('muSpaceSettings');
+  const localProd = localStorage.getItem('muSpaceProducts');
+  if (localSet) muSettings = JSON.parse(localSet);
+  if (localProd) {
+    let parsedProd = JSON.parse(localProd);
+    if(parsedProd.length >= 4) {
+      productData = parsedProd; 
+    }
+  }
+
+  // Cloud Sync System (พ่วง nocache ป้องกันเบราว์เซอร์จำค่าเก่า)
   try {
-    // ใช้วิธีสร้าง Script Tag หรือ Fetch ธรรมดา แต่ตั้ง timeout ป้องกันค้าง
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000); // 6 วิ ถ้าไม่มาคือข้ามเลย
+    const timeoutId = setTimeout(() => controller.abort(), 6000); 
     
-    const response = await fetch(API_URL + "?action=getData", { signal: controller.signal });
+    // ใส่ &t= ตัวเลขสุ่ม เพื่อบังคับให้ดึงข้อมูลใหม่ทุกครั้ง ไม่ดึงจาก Cache
+    const response = await fetch(API_URL + "?action=getData&t=" + new Date().getTime(), { signal: controller.signal });
     clearTimeout(timeoutId);
     
     const result = await response.json();
     
-    // ตรวจสอบความสมบูรณ์: ถ้าข้อมูลจาก Cloud โหลดมาแล้ว "สั้นกว่าปกติ" (น้อยกว่า 4 หมวด) แสดงว่าของบนคลาวด์พัง ให้ข้ามไปใช้ของเดิม
     if (result && result.products && result.products.length >= 4) {
       productData = result.products;
-      if (result.settings) {
-        muSettings = result.settings;
+      if (result.settings && Object.keys(result.settings).length > 0) {
+        muSettings = result.settings; // ทับการตั้งค่าด้วยข้อมูลจากคลาวด์
       }
-      fetchSuccess = true;
-      console.log("✅ โหลดข้อมูลจาก Cloud สำเร็จและข้อมูลสมบูรณ์");
+      console.log("✅ โหลดข้อมูลจาก Cloud สำเร็จ");
     } else {
-      console.warn("⚠️ ข้อมูลบน Cloud ไม่สมบูรณ์ ระบบจะใช้ข้อมูลเริ่มต้นที่สมบูรณ์แทน");
+      console.warn("⚠️ ข้อมูลบน Cloud ไม่สมบูรณ์");
     }
   } catch (error) {
-    console.warn("⚠️ ไม่สามารถโหลดจาก Cloud ได้ (อาจจะออฟไลน์หรือโหลดช้า) ระบบจะใช้ข้อมูลเริ่มต้นแทน", error);
+    console.warn("⚠️ ไม่สามารถโหลดจาก Cloud ได้ ใช้ข้อมูลในเครื่องหรือค่าเริ่มต้น", error);
   }
 
-  // ถ้าโหลดจากคลาวด์ไม่สำเร็จ หรือข้อมูลคลาวด์พัง ให้ลองเช็ก LocalStorage ว่ามีของสมบูรณ์ไหม ถ้าไม่มีก็ใช้ Default
-  if (!fetchSuccess) {
-    const localSet = localStorage.getItem('muSpaceSettings');
-    const localProd = localStorage.getItem('muSpaceProducts');
-    if (localSet) muSettings = JSON.parse(localSet);
-    if (localProd) {
-      let parsedProd = JSON.parse(localProd);
-      if(parsedProd.length >= 4) {
-        productData = parsedProd; // ถ้า local สมบูรณ์ก็ใช้ local
-      }
-    }
-  }
-
-  // เคลียร์ป้ายกำลังโหลด และ แสดงผลหน้าเว็บ
   applySettingsAndRender();
 
-  // Show Intro Modal
   if (!sessionStorage.getItem('hasSeenMuIntro')) {
     setTimeout(() => {
       const m = document.getElementById('intro-modal');
@@ -641,15 +635,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 function applySettingsAndRender() {
-  // Apply Marquee
   const marqueeEl = document.getElementById('marquee-text-display');
   marqueeEl.textContent = muSettings.marquee;
   marqueeEl.setAttribute('scrollamount', muSettings.marqueeSpeed || 2);
   
-  // Apply Intro
   document.getElementById('intro-text-display').textContent = muSettings.intro;
-  
-  // Render Cards
   renderProducts();
 }
 
@@ -665,7 +655,6 @@ function closeIntro() {
   }, 300);
 }
 
-// Render Products to HTML
 function renderProducts() {
   const container = document.getElementById('products-wrapper');
   let html = '';
@@ -783,7 +772,7 @@ function deleteItem(sIdx, cIdx, iIdx) {
 async function saveAdmin() {
   updateDataFromDOM();
   
-  // Update Local State
+  // อัปเดตตัวแปร muSettings ด้วยค่าใหม่จากหน้าจอทันที
   muSettings.marquee = document.getElementById('admin-marquee').value;
   muSettings.marqueeSpeed = parseInt(document.getElementById('admin-marquee-speed').value) || 2;
   muSettings.intro = document.getElementById('admin-intro').value;
@@ -791,7 +780,6 @@ async function saveAdmin() {
   try {
     showToast('⏳ กำลังอัปเดตข้อมูลขึ้น Cloud...');
     
-    // POST to Cloud
     const payload = {
       action: "saveAdminData",
       settings: muSettings,
@@ -804,13 +792,12 @@ async function saveAdmin() {
       body: JSON.stringify(payload)
     });
 
-    // Save locally
     localStorage.setItem('muSpaceSettings', JSON.stringify(muSettings));
     localStorage.setItem('muSpaceProducts', JSON.stringify(productData));
     
     closeAdmin();
-    showToast('✅ บันทึกข้อมูลขึ้น Cloud และอุปกรณ์นี้สำเร็จ!');
-    setTimeout(() => location.reload(), 1000); // Reload to reflect fresh sync
+    showToast('✅ บันทึกข้อมูลขึ้น Cloud สำเร็จ!');
+    setTimeout(() => location.reload(), 1000); 
     
   } catch (error) {
     console.error(error);
@@ -826,8 +813,6 @@ function resetAdmin() {
   if(confirm("คำเตือน: การรีเซ็ตจะทำให้ข้อมูลกลับไปเป็นค่าเริ่มต้น ยืนยันหรือไม่?")) {
     localStorage.removeItem('muSpaceSettings');
     localStorage.removeItem('muSpaceProducts');
-    
-    // Attempt to Reset Cloud as well
     const payload = {
       action: "saveAdminData",
       settings: defaultSettings,
@@ -865,20 +850,17 @@ function updateCartTotal() {
   let html = '';
   let subtotal = 0;
   
-  // Reset Flags
   hasPhone = false; hasWall = false; hasChart = false; hasWeb = false; hasGeneral = false; hasHeal = false; totalDynamicQuestions = 0;
 
   currentCart.forEach((item, index) => {
     subtotal += item.price;
     html += `<div style="display:flex; justify-content:space-between; margin-bottom:4px; border-bottom:1px solid rgba(30,111,255,0.1); padding-bottom:4px;"><span>- ${item.name}</span> <span>${item.price}.- <button onclick="removeItem(${index})" style="background:none; border:none; color:#ff6b6b; cursor:pointer; font-family:'Mitr'; font-size:12px;">[ลบ]</button></span></div>`;
     
-    // Categorize
     if (item.category === 'โทรดูดวง') hasPhone = true;
     else if (item.category === 'วอลเปเปอร์') hasWall = true;
     else if (item.category === 'รับทำเว็บไซต์') hasWeb = true;
     else if (item.category === 'พื้นที่รับฟัง') hasHeal = true;
     
-    // Distinguish "พื้นดวง" vs "ดูดวงทั่วไป"
     if (item.category === 'ดูดวง' || item.category === 'พื้นดวง') {
       if (item.name.includes('พื้นดวง') || item.name.includes('ผูกดวง') || item.category === 'พื้นดวง') {
         hasChart = true;
@@ -901,19 +883,16 @@ function updateCartTotal() {
 
   listEl.innerHTML = html;
   totalEl.textContent = subtotal;
-
   setupDynamicForm(subtotal);
 }
 
 function setupDynamicForm(subtotal) {
-  // Toggle Visibility of Sections
   document.getElementById('form-appt').style.display = (hasPhone || hasGeneral || hasHeal) ? 'block' : 'none';
   document.getElementById('form-wall').style.display = hasWall ? 'block' : 'none';
   document.getElementById('form-chart').style.display = hasChart ? 'block' : 'none';
   document.getElementById('form-web').style.display = hasWeb ? 'block' : 'none';
   document.getElementById('form-general').style.display = (hasGeneral || hasHeal) ? 'block' : 'none';
 
-  // Dynamic Questions for General / Heal
   const dQuestionsDiv = document.getElementById('dynamic-questions');
   dQuestionsDiv.innerHTML = '';
   if (hasGeneral || hasHeal) {
@@ -934,7 +913,6 @@ function setupDynamicForm(subtotal) {
     }
   }
 
-  // Rule: Check pure price < 69 automatically lock type to "พิมพ์"
   const pureSubtotal = subtotal - (document.getElementById('urgent-queue').checked ? 59 : 0);
   const typeSelect = document.getElementById('f-type');
   if (typeSelect && hasGeneral) {
@@ -984,108 +962,52 @@ async function generateSummaryAndSend() {
   const name = document.getElementById('f-name').value.trim();
   if (!name) { alert('กรุณากรอกชื่อเล่น/แอคเคาท์ติดต่อหลักค่ะ'); return; }
 
-  let itemsStr = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
   let totalPrice = document.getElementById('cart-total-price').textContent;
   
+  let orderItemsOnly = currentCart.map(i => `- ${i.name} (${i.price}.-)`).join('\n');
+  if (document.getElementById('urgent-queue').checked) orderItemsOnly += `\n- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)`;
+  
+  let bookingDateTimeOnly = "-";
+  let apptDate = document.getElementById('f-date') ? document.getElementById('f-date').value : '';
+  let apptTime = document.getElementById('f-time') ? document.getElementById('f-time').value : '';
+  if (hasPhone || hasGeneral || hasHeal) {
+    bookingDateTimeOnly = `วันที่: ${apptDate} เวลา: ${apptTime} น.`;
+  }
+  
+  let personalInfoOnly = "-";
+  if (hasGeneral || hasHeal) {
+    personalInfoOnly = `อายุ: ${document.getElementById('f-age').value} ปี\nสถานะ: ${document.getElementById('f-status').value}\nเกิดวัน: ${document.getElementById('f-day').value}`;
+  }
+  
+  let specificDetailsOnly = "";
+  if (hasWall) {
+    specificDetailsOnly += `[วอลเปเปอร์]\nเรื่อง: ${document.getElementById('fw-topic').value}\nชื่อ: ${document.getElementById('fw-name1').value}\nชื่อในวอล: ${document.getElementById('fw-name2').value || '-'}\nวันเดือนปี: ${document.getElementById('fw-day').value} ${document.getElementById('fw-date').value} ${document.getElementById('fw-month').value} (${document.getElementById('fw-zodiac').value})\nสี: ${document.getElementById('fw-color').value}\n\n`;
+  }
+  if (hasChart) {
+    specificDetailsOnly += `[พื้นดวง]\nว/ด/ป: ${document.getElementById('fc-dob').value} (อายุ ${document.getElementById('fc-age').value})\nเวลา/สถานที่: ${document.getElementById('fc-time').value} / ${document.getElementById('fc-place').value}\nQ1: ${document.getElementById('fc-q1').value}\nQ2: ${document.getElementById('fc-q2').value}\n\n`;
+  }
+  if (hasWeb) {
+    specificDetailsOnly += `[ทำเว็บ]\nร้าน: ${document.getElementById('f-web-shop').value}\nรายละเอียด: ${document.getElementById('f-web-detail').value}\nสไตล์: ${document.getElementById('f-web-design').value}\n\n`;
+  }
+  if (hasGeneral || hasHeal) {
+    specificDetailsOnly += `[คำถามเพิ่มเติม/รูปแบบ ${document.getElementById('f-type').value}]\n`;
+    document.querySelectorAll('.dyn-q').forEach((q, idx) => {
+      specificDetailsOnly += `Q${idx+1}: ${q.value.trim() || '-'}\n`;
+    });
+  }
+  if (!specificDetailsOnly) specificDetailsOnly = "-";
+
   let summary = `🧸 ขอบคุณสำหรับการจองบริการกับอาเต๋านะคะ \n‧┈┈┈┈┈┈‧ \n` +
                 `🛒 ออเดอร์จาก: ${name}\n` +
-                `📋 รายการที่สั่ง:\n${itemsStr}\n`;
-  
-  if (document.getElementById('urgent-queue').checked) {
-    summary += `- ⚡ คิวเร่งด่วนพิเศษ (+59 บาท)\n`;
-  }
-  summary += `💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\n`;
-  summary += `-----------------------------\n`;
+                `📋 รายการที่สั่ง:\n${orderItemsOnly}\n` +
+                `💰 ยอดรวมโอน: ${totalPrice} บาท\n✅ โอนเงินเรียบร้อยแล้ว (แนบสลิปด้านล่าง)\n-----------------------------\n`;
 
-  // 1. Phone Appt / End Time Calculation
   if (hasPhone || hasGeneral || hasHeal) {
-    let apptDate = document.getElementById('f-date').value;
-    let apptTime = document.getElementById('f-time').value;
-    
-    if (hasPhone) {
-      let totalMins = 0;
-      currentCart.forEach(item => {
-        if(item.category === 'โทรดูดวง' || item.category === 'พื้นที่รับฟัง') {
-          if(item.name.includes('10 นาที')) totalMins += 10;
-          else if(item.name.includes('15 นาที')) totalMins += 15;
-          else if(item.name.includes('30 นาที')) totalMins += 30;
-          else if(item.name.includes('1 ชั่วโมง') || item.name.includes('60 นาที')) totalMins += 60;
-          else if(item.name.includes('90 นาที')) totalMins += 90;
-        }
-      });
-      
-      let endTimeStr = "";
-      if (apptTime && totalMins > 0) {
-        let [hr, min] = apptTime.split(':').map(Number);
-        let d = new Date();
-        d.setHours(hr, min, 0);
-        d.setMinutes(d.getMinutes() + totalMins);
-        let eHr = String(d.getHours()).padStart(2, '0');
-        let eMin = String(d.getMinutes()).padStart(2, '0');
-        endTimeStr = `${eHr}:${eMin}`;
-      }
-
-      summary += `📞 ข้อมูลการจองคิวโทร:\n`;
-      summary += `วันที่จองคิว: ${apptDate}\n`;
-      if(endTimeStr) {
-        summary += `คิวของลูกดวง: เวลา ${apptTime} น. | หมดเวลา ${endTimeStr} น.\n`;
-      } else {
-        summary += `เวลาที่จอง: ${apptTime} น.\n`;
-      }
-      summary += `-----------------------------\n`;
-    }
+    summary += `📞 ข้อมูลการจองคิว:\n${bookingDateTimeOnly}\n-----------------------------\n`;
   }
-
-  // 2. Wallpaper
-  if (hasWall) {
-    summary += `รหัส: At:001\nหัวข้อ: วอลเปเปอร์ / สิ่งที่ต้องแจ้งในการทำวอลเปเปอร์สายมู กับแม่หมออาเต๋า\n`;
-    summary += `เรื่องที่จะเสริม: ${document.getElementById('fw-topic').value}\n`;
-    summary += `ชื่อ: ${document.getElementById('fw-name1').value}\n`;
-    summary += `ชื่อที่ใส่ในวอล: ${document.getElementById('fw-name2').value || '-'}\n`;
-    summary += `วัน: ${document.getElementById('fw-day').value}\n`;
-    summary += `วันที่: ${document.getElementById('fw-date').value}\n`;
-    summary += `เดือน: ${document.getElementById('fw-month').value}\n`;
-    summary += `ปีนักษัตร: ${document.getElementById('fw-zodiac').value}\n`;
-    summary += `สีที่ชอบ: ${document.getElementById('fw-color').value}\n`;
-    summary += `-----------------------------\n`;
-  }
-
-  // 3. Chart
-  if (hasChart) {
-    summary += `📜 ข้อมูลพื้นดวง / ผูกดวง:\n`;
-    summary += `ชื่อ: ${document.getElementById('fc-name').value}\n`;
-    summary += `วันเดือนปีเกิด: ${document.getElementById('fc-dob').value}\n`;
-    summary += `อายุ: ${document.getElementById('fc-age').value}\n`;
-    summary += `เวลาเกิด: ${document.getElementById('fc-time').value}\n`;
-    summary += `สถานที่/สถานะเกิด: ${document.getElementById('fc-place').value}\n`;
-    summary += `คำถามเน้น:\n1. ${document.getElementById('fc-q1').value}\n2. ${document.getElementById('fc-q2').value}\n`;
-    summary += `-----------------------------\n`;
-  }
-
-  // 4. Web
-  if (hasWeb) {
-    summary += `💻 ข้อมูลรับทำเว็บไซต์:\n`;
-    summary += `ชื่อร้าน/ข้อมูลติดต่อ/ลิ้งค์: ${document.getElementById('f-web-shop').value}\n`;
-    summary += `รายละเอียดและฟังก์ชัน: ${document.getElementById('f-web-detail').value}\n`;
-    summary += `ดีไซน์และโทนสีที่ชอบ: ${document.getElementById('f-web-design').value}\n`;
-    summary += `-----------------------------\n`;
-  }
-
-  // 5. General / Heal
-  if (hasGeneral || hasHeal) {
-    summary += `🔮 ข้อมูลดวงทั่วไป / ฮีลใจ:\n`;
-    if (!hasPhone) { 
-      summary += `วันที่จองคิว: ${document.getElementById('f-date').value} เวลา ${document.getElementById('f-time').value} น.\n`;
-    }
-    summary += `สถานะ: ${document.getElementById('f-status').value} | อายุ: ${document.getElementById('f-age').value} ปี | เกิดวัน: ${document.getElementById('f-day').value}\n\n`;
-    
-    const dynQs = document.querySelectorAll('.dyn-q');
-    dynQs.forEach((q, idx) => {
-      let val = q.value.trim();
-      summary += (totalDynamicQuestions > 0 ? `คำถามที่ ${idx+1}: ` : 'รายละเอียดเพิ่มเติม: ') + (val || '-') + '\n';
-    });
-    
-    summary += `\nรูปแบบการรับบริการ: ${document.getElementById('f-type').value}\n`;
+  if (hasWall || hasChart || hasWeb || hasGeneral || hasHeal) {
+    if(personalInfoOnly !== "-") summary += `🔮 ข้อมูลส่วนตัว:\n${personalInfoOnly}\n\n`;
+    if(specificDetailsOnly !== "-") summary += `📝 ข้อมูลและคำถาม:\n${specificDetailsOnly}\n`;
     summary += `-----------------------------\n`;
   }
 
@@ -1094,14 +1016,17 @@ async function generateSummaryAndSend() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   showToast('🎉 สร้างข้อความสรุปเรียบร้อย!');
 
-  // SEND ORDER TO CLOUD API
   try {
     const orderPayload = {
       action: "createOrder",
       name: name,
-      details: summary,
-      totalPrice: totalPrice,
-      slip: "รอส่งสลิปในแชท" 
+      items: orderItemsOnly,                 
+      bookingDateTime: bookingDateTimeOnly,  
+      personalInfo: personalInfoOnly,        
+      specificDetails: specificDetailsOnly.trim(),  
+      totalPrice: totalPrice,                
+      slip: "รอส่งสลิปในแชท",
+      details: summary                       
     };
 
     fetch(API_URL, {
